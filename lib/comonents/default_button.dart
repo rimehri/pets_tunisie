@@ -16,12 +16,14 @@ class DefaultButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle style =
+    ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20),backgroundColor: Color.fromRGBO(59, 120, 121, 1),);
     return SizedBox(
       width: double.infinity,
       height: getProportionateScreenHeight(56),
-      child: FlatButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-         color: Color.fromRGBO(59, 120, 121, 1),
+      child:  OutlinedButton  (
+        style: style,
+
 
         onPressed: press,
         child:

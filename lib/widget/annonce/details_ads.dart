@@ -254,7 +254,7 @@ class _DetailsAdsState extends State<DetailsAds> {
                     1,
                   ),
                   borderRadius: BorderRadius.circular(15)),
-              child: FlatButton(
+              child: ElevatedButton(
 
                 onPressed: () {
                   // Navigator.push(
@@ -291,7 +291,7 @@ class _DetailsAdsState extends State<DetailsAds> {
                     1,
                   ),
                   borderRadius: BorderRadius.circular(15)),
-              child: FlatButton(
+              child: ElevatedButton(
 
                 onPressed: () {
                   // Navigator.push(

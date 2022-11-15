@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../config/size_config.dart';
+class AppConsts {
+  static const Color appBlueColor = Color.fromRGBO(35, 82, 117, 1);
+  static const Color appDarkBlueColor = Color.fromRGBO(12, 34, 79, 1);
+  static const Color appOrangeColor = Color.fromRGBO(100, 160, 137,1);
+  static const Color appDeepOrange = Color.fromRGBO(59, 120, 121, 1);
+
+}
 
 
 const kPrimaryColor = Color(0xFFFF7643);

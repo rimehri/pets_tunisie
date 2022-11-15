@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pfe/data/features/map.dart';
 import 'package:pfe/widget/veterinary/list_vete.dart';
+import 'package:pfe/widget/veterinary/rendez_vous.dart';
 
 class details_veto extends StatefulWidget {
   const details_veto({Key? key}) : super(key: key);
@@ -71,7 +73,7 @@ pinned: true,
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom:10,top: 18.0,right: 8,left: 8),
+                      padding: const EdgeInsets.only(bottom:20,top: 18.0,right: 8,left: 8),
                       child: Container(
                         decoration: BoxDecoration(
                             color: Colors.white,
@@ -83,12 +85,12 @@ pinned: true,
                          mainAxisAlignment: MainAxisAlignment.start,
                          children: [
                            Container(
-                               margin: EdgeInsets.only(right: 160,bottom: 10),
+                               margin: EdgeInsets.only(bottom: 10),
                                child: Text("Diplome et Formation ",style: TextStyle(color: Colors.blueGrey,fontWeight: FontWeight.bold,fontSize: 20),)),
                            Text("Diplôme national de Docteur en Médecine Dentaire de la faculté de Médecine dentaire de Monastir"),
 
      Container(
-         margin: EdgeInsets.only(right: 180,top: 10),
+         margin: EdgeInsets.only(top: 20),
          child: Text("Mode de réglement ",style: TextStyle(color: Colors.blueGrey,fontWeight: FontWeight.bold,fontSize: 20),)),
                            Column(
                              children: [
@@ -124,7 +126,7 @@ pinned: true,
                              ],
                            ),
                            Container(
-                               margin: EdgeInsets.only(right: 270,bottom: 10),
+                               margin: EdgeInsets.only(bottom: 20),
                                child: Text("Adresse  ",style: TextStyle(color: Colors.blueGrey,fontWeight: FontWeight.bold,fontSize: 20),)),
                            Text("Route de Gremda km 3.5 à coté de polyclinique ChamsSfax Ville 3000 Sfax Tunisie")
                          ],
@@ -132,7 +134,7 @@ pinned: true,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(bottom:10,top: 18.0,right: 8,left: 8),
+                      padding: const EdgeInsets.only(bottom:20,top: 18.0,right: 8,left: 8),
                       child: Container(
                         decoration: BoxDecoration(
                             color: Colors.white,
@@ -144,7 +146,7 @@ pinned: true,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                                margin: EdgeInsets.only(right: 200,bottom: 10),
+                                margin: EdgeInsets.only(bottom: 20),
                                 child: Text("Hotaire de travail  ",style: TextStyle(color: Colors.blueGrey,fontWeight: FontWeight.bold,fontSize: 20),)),
 
                             Column(children: [
@@ -162,7 +164,7 @@ pinned: true,
                               ),
 
                                Container(
-                                 margin: EdgeInsets.only(right: 60,top: 30),
+                                 margin: EdgeInsets.only(top: 30),
                                  child: Column(
                                   children: [
                                     Row(
@@ -206,10 +208,11 @@ pinned: true,
                                     ) ,
                                     SizedBox(height: 30,),
                                     Row(
+
                                       children: [
                                         Container(child: Text("Sam "),),
                                         Container( margin: EdgeInsets.only(left: 50,) ,child: Text("08:30->13:00 "),),
-                                        Container(margin: EdgeInsets.only(left: 40,),child: Text("08:30->13:00 "),),
+                                        Container(margin: EdgeInsets.only(left: 40),child: Text("08:30->13:00 "),),
                                       ],
                                     ),
                                     SizedBox(height: 30,),
@@ -257,26 +260,29 @@ pinned: true,
                     1,
                   ),
                   borderRadius: BorderRadius.circular(25)),
-              child: FlatButton(
+              child: ElevatedButton(
 
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => howScreen()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => rendez_vous()),
+                  );
 
                 },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(Icons.calendar_today,color: Colors.white,),
-                    SizedBox(width: 10,),
-                    Text(
-                      "PRENEZ RENDEZ VOUS ",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
+                child: InkWell(
+
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(Icons.calendar_today,color: Colors.white,),
+                      SizedBox(width: 10,),
+                      Text(
+                        "PRENEZ RENDEZ VOUS ",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
 
               ),
@@ -321,22 +327,30 @@ Widget myflexible(){
   // color: Colors.grey,height: 40,width: 40,),
   ),
   SizedBox(width: 10,),
-  Container(
-  child: Icon(Icons.local_post_office_outlined,color: Colors.blueGrey,),
-  decoration: BoxDecoration(
-  color: Color.fromRGBO(240, 247, 240, 1),
-  borderRadius: BorderRadius.circular(8)
-  ),height: 40,width: 40,),
+  InkWell(
+    onTap: (){
+
+    },
+    child: Container(
+    child: Icon(Icons.local_post_office_outlined,color: Colors.blueGrey,),
+    decoration: BoxDecoration(
+    color: Color.fromRGBO(240, 247, 240, 1),
+    borderRadius: BorderRadius.circular(8)
+    ),height: 40,width: 40,),
+  ),
   SizedBox(width: 10,),
 
-  Container(
+  InkWell(
+    onTap: (){  ServiceLauncher.handleButton("https://www.google.com/maps/search/?api=1&query=36.8466313,36.8466313");},
+    child: Container(
 
-  child: Icon(FontAwesomeIcons.location,color: Colors.blueGrey,),
-  decoration: BoxDecoration(
+    child: Icon(FontAwesomeIcons.location,color: Colors.blueGrey,),
+    decoration: BoxDecoration(
 
-  color: Color.fromRGBO(240, 247, 240, 1),
-  borderRadius: BorderRadius.circular(8)
-  ),height: 40,width: 40,)
+    color: Color.fromRGBO(240, 247, 240, 1),
+    borderRadius: BorderRadius.circular(8)
+    ),height: 40,width: 40,),
+  )
   ],
   ),
   )

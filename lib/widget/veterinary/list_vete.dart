@@ -56,7 +56,7 @@ class _lis_vetoState extends State<lis_veto> {
           // Add your onPressed code here!
         },
         backgroundColor:  Color.fromRGBO(59, 120, 121, 1),
-        label: const Text('Join Us'),
+        label: const Text('Rejoignez-nous'),
         icon: const Icon(Icons.add),
       ),
     );

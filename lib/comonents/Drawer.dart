@@ -7,6 +7,8 @@ import 'package:pfe/widget/services/list-service.dart';
 
 import '../widget/animal/list_animl.dart';
 import '../widget/annonce/all_ads.dart';
+
+import '../widget/e-commerce/list_produits.dart';
 import '../widget/home.dart';
 import '../widget/index/home_page.dart';
 import '../widget/user/login_page.dart';
@@ -68,7 +70,7 @@ class _drawerState extends State<drawer> {
                   ),
                   Container(
                     alignment: Alignment.center,
-                    child: Text("Welcome Rimeh",
+                    child: Text("Bienvenue Rimeh",
                         style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,color: Colors.white, letterSpacing: .5))
@@ -80,7 +82,7 @@ class _drawerState extends State<drawer> {
             ),
             ListTile(
               leading: Icon(FontAwesomeIcons.houseUser, size: _drawerIconSize, color: Color.fromRGBO(59, 120, 121, 1),),
-              title: Text('Home', style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(fontSize: 17, color: Color.fromRGBO(59, 120, 121, 0.7)  ) ),),
+              title: Text('accueil ', style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(fontSize: 17, color: Color.fromRGBO(59, 120, 121, 0.7)  ) ),),
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => home_page()));
               },
@@ -88,7 +90,7 @@ class _drawerState extends State<drawer> {
             Divider( color: Color.fromRGBO(59, 120, 121, 1), height: 1,),
             ListTile(
               leading: Icon(FontAwesomeIcons.user, size: _drawerIconSize,  color: Color.fromRGBO(59, 120, 121, 1),),
-              title: Text('My Account', style:GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: 17, color: Color.fromRGBO(59, 120, 121, 0.7) )),),
+              title: Text('Mon compte', style:GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: 17, color: Color.fromRGBO(59, 120, 121, 0.7) )),),
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
               },
@@ -96,7 +98,7 @@ class _drawerState extends State<drawer> {
             Divider( color: Color.fromRGBO(59, 120, 121, 1), height: 1,),
             ListTile(
               leading: Icon(FontAwesomeIcons.cat,size: _drawerIconSize, color: Color.fromRGBO(59, 120, 121, 1),),
-              title: Text('My animals', style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(fontSize: _drawerFontSize, color: Color.fromRGBO(59, 120, 121, 0.7))),
+              title: Text('mes animaux', style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(fontSize: _drawerFontSize, color: Color.fromRGBO(59, 120, 121, 0.7))),
               ),
               onTap: () {
                 Navigator.push( context, MaterialPageRoute(builder: (context) => list_animal()), );
@@ -105,7 +107,7 @@ class _drawerState extends State<drawer> {
             Divider( color: Color.fromRGBO(59, 120, 121, 1), height: 1,),
             ListTile(
               leading: Icon(FontAwesomeIcons.userDoctor, size: _drawerIconSize, color: Color.fromRGBO(59, 120, 121, 1),),
-              title: Text('veterinary',style: GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: _drawerFontSize,color: Color.fromRGBO(59, 120, 121, 0.7))),),
+              title: Text('les vétérinaires',style: GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: _drawerFontSize,color: Color.fromRGBO(59, 120, 121, 0.7))),),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => lis_veto()),);
               },
@@ -113,9 +115,9 @@ class _drawerState extends State<drawer> {
             Divider( color: Color.fromRGBO(59, 120, 121, 1), height: 1,),
             ListTile(
               leading: Icon(FontAwesomeIcons.shop, size: _drawerIconSize, color: Color.fromRGBO(59, 120, 121, 1),),
-              title: Text('Shops',style:GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: _drawerFontSize,color: Color.fromRGBO(59, 120, 121, 0.7))),),
+              title: Text('magasins',style:GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: _drawerFontSize,color: Color.fromRGBO(59, 120, 121, 0.7))),),
               onTap: () {
-                Navigator.push( context, MaterialPageRoute(builder: (context) => list_ads()),);
+                Navigator.push( context, MaterialPageRoute(builder: (context) => Listproduit()),);
               },
             ),
             Divider( color: Color.fromRGBO(59, 120, 121, 1), height: 1,),
@@ -129,7 +131,7 @@ class _drawerState extends State<drawer> {
             Divider( color: Color.fromRGBO(59, 120, 121, 1), height: 1,),
             ListTile(
               leading: Icon(FontAwesomeIcons.adversal, size: _drawerIconSize, color: Color.fromRGBO(59, 120, 121, 1),),
-              title: Text('Ads',style:GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: _drawerFontSize,color: Color.fromRGBO(59, 120, 121, 0.7))),),
+              title: Text('les annonces ',style:GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: _drawerFontSize,color: Color.fromRGBO(59, 120, 121, 0.7))),),
               onTap: () {
                 Navigator.push( context, MaterialPageRoute(builder: (context) => list_ads()),);
               },
@@ -137,7 +139,7 @@ class _drawerState extends State<drawer> {
             Divider( color: Color.fromRGBO(59, 120, 121, 1), height: 1,),
             ListTile(
               leading: Icon(FontAwesomeIcons.rightFromBracket, size: _drawerIconSize, color: Color.fromRGBO(59, 120, 121, 1),),
-              title: Text('Logout',style: GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: _drawerFontSize,color: Color.fromRGBO(59, 120, 121, 0.7))),),
+              title: Text('Se déconnecter',style: GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: _drawerFontSize,color: Color.fromRGBO(59, 120, 121, 0.7))),),
               onTap: () {
                 Navigator.push( context, MaterialPageRoute(builder: (context) => LoginPage()), );
               },

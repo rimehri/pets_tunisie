@@ -7,11 +7,11 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> categories = [
-      {"icon": "assets/dog.svg", "text": "Dogs"},
-      {"icon": "assets/cat.svg", "text": "Cats"},
-      {"icon": "assets/clown-fish.svg", "text": "fish"},
-      {"icon": "assets/bird.svg", "text": "Bird"},
-      {"icon": "assets/dog_1_.svg", "text": "More"},
+      {"icon": "assets/dog.svg", "text": "Chiens"},
+      {"icon": "assets/cat.svg", "text": "Chats"},
+      {"icon": "assets/clown-fish.svg", "text": "Poinssons"},
+      {"icon": "assets/bird.svg", "text": "oiseaux"},
+      {"icon": "assets/dog_1_.svg", "text": "Autre"},
     ];
     return Padding(
       padding: EdgeInsets.only(right: 20,left: 20,top: 10,bottom: 8),

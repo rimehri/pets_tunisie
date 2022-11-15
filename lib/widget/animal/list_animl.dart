@@ -19,9 +19,12 @@ class list_animal extends StatefulWidget {
 
 class _list_animalState extends State<list_animal> {
   Future? doc;
-
+  final ButtonStyle style =
+  ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       backgroundColor: Color.fromRGBO(221, 238, 234, 1),
       drawer: const Drawer(
@@ -108,7 +111,7 @@ class _list_animalState extends State<list_animal> {
                                         borderRadius:
                                             BorderRadius.circular(4.0)),
                                     child: Stack(
-                                      overflow: Overflow.visible,
+
                                       alignment: Alignment.topCenter,
                                       children: [
                                         Container(
@@ -142,11 +145,12 @@ class _list_animalState extends State<list_animal> {
                                                             BorderRadius
                                                                 .circular(20),
                                                       ),
-                                                      child: RaisedButton(
+                                                      child: ElevatedButton(
                                                         onPressed: () =>
                                                             Navigator.pop(
                                                                 context),
-                                                        color: Colors.red,
+                                                        style:style ,
+
                                                         child: Text(
                                                           'Cancel',
                                                           style: TextStyle(
@@ -161,7 +165,7 @@ class _list_animalState extends State<list_animal> {
                                                             BorderRadius
                                                                 .circular(20),
                                                       ),
-                                                      child: RaisedButton(
+                                                      child: ElevatedButton(
                                                         onPressed: () async {
                                                           await deleteanimal(
                                                           "6331aaecf7d5701dd7df846d",
@@ -174,7 +178,7 @@ class _list_animalState extends State<list_animal> {
 
 
                                                         },
-                                                        color: Colors.green,
+
                                                         child: Text(
                                                           'Confirmer ',
                                                           style: TextStyle(
@@ -223,7 +227,7 @@ class _list_animalState extends State<list_animal> {
 
   @override
   void initState() {
-    doc = getanimal("6331aaecf7d5701dd7df846d");
+    doc = getanimal("635a95b07bac467cb2ab8690");
     super.initState();
   }
 }

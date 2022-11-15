@@ -38,6 +38,8 @@ class _add_animalState extends State<add_animal> {
   TextEditingController descrption = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle style =
+    ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20),backgroundColor: Color.fromRGBO(59, 120, 121, 1),);
     String password = "";
 
     bool checkedValue = false;
@@ -113,7 +115,7 @@ class _add_animalState extends State<add_animal> {
                             style: GoogleFonts.gloriaHallelujah(
                                 textStyle: const TextStyle(letterSpacing: .5)),
                             decoration: ThemeHelper().textInputDecoration(
-                                ' Name', 'Enter your name'),
+                                ' Nom', 'Entrez le  nom'),
                             validator: (val) {
                               if (val!.isEmpty) {
                                 return "Please enter  name";
@@ -274,7 +276,7 @@ class _add_animalState extends State<add_animal> {
                                     _radioValue = value as int;
                                   });
                                 }),
-                            Text("male"),
+                            Text("mâle"),
                             Radio(
                                 value: 2,
                                 groupValue: _radioValue,
@@ -297,7 +299,7 @@ class _add_animalState extends State<add_animal> {
                               padding:
                                   const EdgeInsets.fromLTRB(40, 10, 40, 10),
                               child: Text(
-                                "Add Your Animal",
+                                "Ajoutez votre animal",
                                 style: GoogleFonts.gloriaHallelujah(
                                     textStyle: TextStyle(
                                         color: Colors.white,
@@ -308,9 +310,9 @@ class _add_animalState extends State<add_animal> {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
                                 await addanimal(
-                                    "6331aaecf7d5701dd7df846d",
+                                    "6341deacafd4c19c8c395303",
                                     name.text,
-                                    _radioValue == 1 ? "male" : "femelle",
+                                    _radioValue == 1 ? "mâle" : "femelle",
                                     date_selected,
                                     etat_sante.text,
                                     poids.text,
@@ -327,7 +329,7 @@ class _add_animalState extends State<add_animal> {
                                               borderRadius:
                                                   BorderRadius.circular(4.0)),
                                           child: Stack(
-                                            overflow: Overflow.visible,
+
                                             alignment: Alignment.topCenter,
                                             children: [
                                               Container(
@@ -339,7 +341,7 @@ class _add_animalState extends State<add_animal> {
                                                           20, 50, 10, 10),
                                                   child: Column(
                                                     children: [
-                                                      Text(
+                                                  const    Text(
                                                         'Information',
                                                         style: TextStyle(
                                                             fontWeight:
@@ -347,11 +349,11 @@ class _add_animalState extends State<add_animal> {
                                                             fontSize: 20),
                                                       ),
                                                       Text(
-                                                        'Your New animal added with seccuss : \n ',
+                                                        'Votre nouvel animal a été ajouté avec succès : \n ',
                                                         style: TextStyle(
                                                             fontSize: 20),
                                                       ),
-                                                      RaisedButton(
+                                                      ElevatedButton(
                                                         onPressed: () => Navigator
                                                                 .of(context)
                                                             .pushReplacement(
@@ -359,7 +361,7 @@ class _add_animalState extends State<add_animal> {
                                                                     builder:
                                                                         (context) =>
                                                                             list_animal())),
-                                                        color: Colors.green,
+
                                                         child: Text(
                                                           'Okay',
                                                           style: TextStyle(

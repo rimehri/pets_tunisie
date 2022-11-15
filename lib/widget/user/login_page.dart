@@ -71,10 +71,10 @@ late String currentuser="" ;
                                   style: GoogleFonts.gloriaHallelujah(
                                       textStyle: TextStyle(letterSpacing: .5)),
                                   decoration: ThemeHelper().textInputDecoration(
-                                      'Email', 'Enter your Email'),
+                                      'Email', 'Entrez Ton Email'),
                                   validator: (val) {
                                     if ((val!.isEmpty)) {
-                                      return "Enter Your valide  email";
+                                      return "entrez votre email valide";
                                     }
                                     return null;
                                   },
@@ -92,10 +92,10 @@ late String currentuser="" ;
                                           const TextStyle(letterSpacing: .5)),
                                   obscureText: true,
                                   decoration: ThemeHelper().textInputDecoration(
-                                      'Password', 'Enter your password'),
+                                      'Mot de Passe', 'Enter your password'),
                                   validator: (val) {
                                     if (val!.isEmpty) {
-                                      return "Please enter your password";
+                                      return "s'il vous plait entrez votre mot de passe";
                                     }
                                     return null;
                                   },
@@ -117,11 +117,11 @@ late String currentuser="" ;
                                     );
                                   },
                                   child: Text(
-                                    "Forgot your password?",
+                                    "Mot de passe oublié?",
                                     style: GoogleFonts.gloriaHallelujah(
                                         textStyle: TextStyle(
                                             color: Colors.grey,
-                                            letterSpacing: .5)),
+                                            letterSpacing: .3)),
                                   ),
                                 ),
                               ),
@@ -134,7 +134,7 @@ late String currentuser="" ;
                                     padding:
                                         EdgeInsets.fromLTRB(40, 10, 40, 10),
                                     child: Text(
-                                      'Sign In',
+                                      'Connexion',
                                       style: GoogleFonts.gloriaHallelujah(
                                           textStyle: TextStyle(
                                               fontSize: 17.0,
@@ -144,16 +144,21 @@ late String currentuser="" ;
                                     ),
                                   ),
                                   onPressed: () async {
-                                    // if (_formKey.currentState!.validate()) {
-                                    //   _formKey.currentState!.save();
-                                    //   User u = await login(email,password);
-                                    //   setState(() {
-                                    //     currentuser = u.sId ;
-                                    //   });
-                                    //   print(password);
-                                    //   print(email);
-                                    //   print(u.image);
-                                    //   print(u);
+                                    if (_formKey.currentState!.validate()) {
+                                      _formKey.currentState!.save();
+                                      User u = await login(email, password);
+                                      final prefs = await SharedPreferences.getInstance();
+                                     // await prefs.setString('name', u.name!);
+                                      //await prefs.setString('addresse', u.addresse!);
+                                     // await prefs.setString('mail', u.email!);
+                                  //    await prefs.setString('phone', u.phone!);
+                                      setState(() {
+                                        //currentuser = u.sId!;
+                                      });
+                                      print(password);
+                                      print(email);
+                                      print(u.image);
+                                      print(u);
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                               builder: (context) => home_page()
@@ -162,22 +167,22 @@ late String currentuser="" ;
                                       );
                                     }
 
-                                //  },
+                                    //  },
 
-                                ),
+                                  }),
                               ),
                               Container(
                                 margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
                                 //child: Text('Don\'t have an account? Create'),
                                 child: Text.rich(TextSpan(children: [
                                   TextSpan(
-                                      text: "Don\'t have an account? ",
+                                      text: "vous n'avez pas de compte, ",
                                       style: GoogleFonts.gloriaHallelujah(
                                           textStyle: const TextStyle(
                                               color: Colors.black,
                                               letterSpacing: .5))),
                                   TextSpan(
-                                    text: 'Create',
+                                    text: 'Créez',
                                     style: GoogleFonts.gloriaHallelujah(
                                         textStyle: const TextStyle(
                                             fontWeight: FontWeight.bold,

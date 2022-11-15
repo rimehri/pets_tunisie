@@ -1,6 +1,7 @@
 // This widget will draw header section of all page. Wich you will get with the project source code.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HeaderWidget extends StatefulWidget {
   final double _height;
@@ -108,12 +109,12 @@ class _HeaderWidgetState extends State<HeaderWidget> {
 
             child: Visibility(
               visible: _showIcon,
-              child: Image.asset(
-                "assets/aaz.png"
+              child: Container(
+                width: 130,
+                  height: 130,
 
+                  child: SvgPicture.asset('assets/Capture.svg',color: Colors.white,)))
 
-              ),
-            ),
           ),
 
         ],

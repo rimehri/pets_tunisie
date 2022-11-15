@@ -35,7 +35,7 @@ String? phone ="";
     var supportingText =
         'Beautiful home to rent, recently refurbished with modern appliances...';
     return Container(
-      margin: EdgeInsets.all(8),
+      margin: EdgeInsets.only(right: 8,left: 8),
       child: Card(
 
 
@@ -95,7 +95,7 @@ String? phone ="";
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      widget.cart4.date_creation??"" ,
+                      widget.cart4.date_creation.toString().substring(0,10) ,
                       style:TextStyle(
                         color: Colors.black,
 

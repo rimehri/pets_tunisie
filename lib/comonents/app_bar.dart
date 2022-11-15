@@ -54,7 +54,7 @@ class appbar  extends StatelessWidget {
         ),
       ),
       flexibleSpace:Stack(
-        overflow: Overflow.visible,
+
         children: [
 
           Positioned(

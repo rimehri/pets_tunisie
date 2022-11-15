@@ -10,12 +10,12 @@ class body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> blog = [
-      { "text": "4 Reasons a pet Is Good \n for you ","image": "https://www.thepetexpress.co.uk/blog-admin/wp-content/uploads/2014/06/animal-731355_1920-1024x681.jpg"},
+      { "text": "4 raisons pour lesquelles \n un animal de compagnie \n est bon pour vous ","image": "https://www.thepetexpress.co.uk/blog-admin/wp-content/uploads/2014/06/animal-731355_1920-1024x681.jpg"},
       { "text": "Why owning a pet or being \naround a pet is so \n good for you","image": "https://cdn-ds.com/blogs-media/sites/549/2018/08/29145137/dog-sitting-in-front-seat-of-car-with-sunglasses_b.jpg"},
       { "text": "Pets promote routine","image": "https://trendysilo.com/wp-content/uploads/2022/08/Conseils-de-Securite-en-Voyage-3.jpg"},
       { "text": "Pets remind you to play\n (and chill)","image": "https://www.besthealthmag.ca/wp-content/uploads/2020/04/pet-is-good-for-you.gif"},
 
-      { "text": "4 Reasons a pet Is Good\n for you ","image": "https://www.thepetexpress.co.uk/blog-admin/wp-content/uploads/2014/06/animal-731355_1920-1024x681.jpg"},
+      { "text": "4 raisons pour lesquelles\n  un animal de compagnie \n  est bon  pour vous","image": "https://www.thepetexpress.co.uk/blog-admin/wp-content/uploads/2014/06/animal-731355_1920-1024x681.jpg"},
       { "text": "Why owning a pet or being\n around a pet is so \n good for you","image": "https://cdn-ds.com/blogs-media/sites/549/2018/08/29145137/dog-sitting-in-front-seat-of-car-with-sunglasses_b.jpg"},
       { "text": "Pets promote routine","image": "https://trendysilo.com/wp-content/uploads/2022/08/Conseils-de-Securite-en-Voyage-3.jpg"},
       { "text": "Pets remind you to play\n (and chill)","image": "https://www.besthealthmag.ca/wp-content/uploads/2020/04/pet-is-good-for-you.gif"},

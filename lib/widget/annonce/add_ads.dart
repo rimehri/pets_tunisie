@@ -260,9 +260,8 @@ centerTitle: true,
 
 
 
-                                   "12/11/2022",
-                                    4,
 
+                                    prix.text,
 
                                     descrption.text);
 
@@ -274,7 +273,7 @@ centerTitle: true,
                                           borderRadius:
                                           BorderRadius.circular(4.0)),
                                       child: Stack(
-                                        overflow: Overflow.visible,
+
                                         alignment: Alignment.topCenter,
                                         children: [
                                           Container(
@@ -298,7 +297,7 @@ centerTitle: true,
                                                     style: TextStyle(
                                                         fontSize: 20),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () => Navigator
                                                         .of(context)
                                                         .pushReplacement(
@@ -306,7 +305,7 @@ centerTitle: true,
                                                             builder:
                                                                 (context) =>
                                                                     list_ads())),
-                                                    color: Colors.green,
+
                                                     child: Text(
                                                       'Okay',
                                                       style: TextStyle(

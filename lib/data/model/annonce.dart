@@ -35,7 +35,7 @@ this.user,
     type = json['type'];
     prix = json['prix'];
     date_creation = json['date_creation'];
-    photos = json['photos'].cast<String>();
+    //photos = json['photos'].cast<String>();
 
     categorie = json['categorie'];
   }

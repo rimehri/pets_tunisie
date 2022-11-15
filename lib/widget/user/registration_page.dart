@@ -49,7 +49,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
               child: HeaderWidget(150, false, ),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
+              margin: EdgeInsets.only(top: 50,right: 10,left: 10),
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               alignment: Alignment.topRight,
               child: Column(
@@ -71,10 +71,10 @@ class _RegistrationPageState extends State<RegistrationPage>{
                             style: GoogleFonts.gloriaHallelujah(textStyle: const TextStyle(
 
                                 letterSpacing: .5)),
-                            decoration: ThemeHelper().textInputDecoration(' Name', 'Enter your name'),
+                            decoration: ThemeHelper().textInputDecoration(' Nom', 'Entrez Nom'),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Please enter your name";
+                                return "S'il vous plaît entrez votre nom";
                               }
                               return null;
                             },
@@ -88,16 +88,16 @@ class _RegistrationPageState extends State<RegistrationPage>{
                             style: GoogleFonts.gloriaHallelujah(textStyle: const TextStyle(
 
                                 letterSpacing: .5)),
-                            decoration: ThemeHelper().textInputDecoration("E-mail address", "Enter your email"),
+                            decoration: ThemeHelper().textInputDecoration("E-mail ", "Entrez l'email"),
                             keyboardType: TextInputType.emailAddress,
                             validator: (val) {
                               if(!(val!.isEmpty) && !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$").hasMatch(val)){
-                                return "Enter a valid email address";
+                                return "Entrez un email valide";
                               }
 
                               else if
                               (val.isEmpty){
-                                return "Enter a  phone number";
+                                return "s'il vous plait Entrez un email";
                               }
                               return null;
                             },
@@ -112,16 +112,16 @@ class _RegistrationPageState extends State<RegistrationPage>{
 
                                 letterSpacing: .5)),
                             decoration: ThemeHelper().textInputDecoration(
-                                "Mobile Number",
-                                "Enter your mobile number"),
+                                "numéro de téléphone",
+                                "Entrez votre numéro de mobile"),
                             keyboardType: TextInputType.phone,
                             validator: (val) {
                               if(!(val!.isEmpty) && !RegExp(r"^(\d+)*$").hasMatch(val)){
-                                return "Enter a valid phone number";
+                                return "Entrez votre numéro de téléphone";
                               }
                               else if
                               (val.isEmpty){
-                                return "Enter a  phone number";
+                                return "s'il vous plait Entrez votre numéro de téléphone";
                               }
                               return null;
                             },
@@ -135,7 +135,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
 
                                if
                               (val!.isEmpty){
-                                return "Enter a  phone number";
+                                return "s'il vous plait Entrez votre adresse";
                               }
                               return null;
                             },
@@ -143,7 +143,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                             style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(
 
                                 letterSpacing: .5)),
-                            decoration: ThemeHelper().textInputDecoration('Your Address', 'Enter your Address'),
+                            decoration: ThemeHelper().textInputDecoration('Votre  Address', 'Entrez votre adresse'),
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
@@ -156,10 +156,10 @@ class _RegistrationPageState extends State<RegistrationPage>{
                                 letterSpacing: .5)),
                             obscureText: true,
                             decoration: ThemeHelper().textInputDecoration(
-                                "Password*", "Enter your password"),
+                                "Mot de Passe", "Tapez votre mot de passe"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Please enter your password";
+                                return "s'il vous plait entrez votre mot de passe";
                               }
                               return null;
                             },
@@ -173,7 +173,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                             onTap: () {
                               Navigator.push( context, MaterialPageRoute( builder: (context) => LoginPage()), );
                             },
-                            child: Text( "you already have account ?",  style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(
+                            child: Text( "vous avez déjà un compte ?",  style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(
 
                                 color: Colors.grey, letterSpacing: .5)),
                             ),
@@ -194,10 +194,10 @@ class _RegistrationPageState extends State<RegistrationPage>{
                                             state.didChange(value);
                                           });
                                         }),
-                                    Text("I accept all terms and conditions.", style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(
+                                    Text("J'accepte tous les termes et conditions.", style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(
                                       color: Colors.grey,
 
-                            letterSpacing: .5)),),
+                            letterSpacing: .1)),),
                                   ],
                                 ),
                                 Container(
@@ -213,7 +213,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                           },
                           validator: (value) {
                             if (!checkboxValue) {
-                              return 'You need to accept terms and conditions';
+                              return 'Vous devez accepter les termes et conditions';
                             } else {
                               return null;
                             }
@@ -227,7 +227,7 @@ class _RegistrationPageState extends State<RegistrationPage>{
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
                               child: Text(
-                                "Register",
+                                "S'inscrire",
                                 style:  GoogleFonts.gloriaHallelujah(textStyle: TextStyle(
 color: Colors.white,
 
@@ -249,7 +249,7 @@ color: Colors.white,
                                 prefs.setInt('codeI',u.resetCode!);
                                 print("eee"+u.phone.toString());
                                 Fluttertoast.showToast(
-                                    msg: "account created successfully",
+                                    msg: "compte créé avec succès",
                                     toastLength: Toast.LENGTH_SHORT,
                                     gravity: ToastGravity.BOTTOM,
                                     timeInSecForIosWeb: 1,

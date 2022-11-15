@@ -24,21 +24,21 @@ class _BodyState extends State<home> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
-      "text": "Welcome to Tunisie Pets, Let’s Start!",
+      "text": "Bienvenue chez Pets Tunisie",
       "image": "assets/front.png"
 
     },
     {
       "text":
-      "we help people to manage  remotely ",
+      "Nous aidons les gens à gérer leurs animaux à distance",
       "image": "assets/kid.png"
     },
     {
-      "text": "We show the easy way . \nJust stay at home with us",
+      "text": "Nous montrons la manière simple \n  Restez à la maison avec nous",
       "image": "assets/dog.png"
     },
     {
-      "text": "We show the easy way . \nJust stay at home with us",
+      "text": "Protégez Vos animaux avec Un code QR",
       "image": "assets/scan-2.png"
     },
 
@@ -88,7 +88,7 @@ class _BodyState extends State<home> {
 
                     Spacer(flex: 3),
                     DefaultButton(
-                      text: "let's Start",
+                      text: "on commence",
                       press: () {
                         Navigator.push(
                           context,

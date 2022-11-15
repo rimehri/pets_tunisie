@@ -24,7 +24,8 @@ class modif_animal extends StatefulWidget {
 
 class _modif_animalState extends State<modif_animal> {
 
-
+  final ButtonStyle style =
+  ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
   final _formKey = GlobalKey<FormState>();
 
@@ -38,7 +39,7 @@ class _modif_animalState extends State<modif_animal> {
  late TextEditingController etat_sante = TextEditingController(text: widget.animal.etatSante);
   late TextEditingController type = TextEditingController(text: widget.animal.typeAnimal!.typename);
   late TextEditingController descrption = TextEditingController(text: widget.animal.description);
-  late int _radioValue = widget.animal.genre =="male"?1:2;
+  late int _radioValue = widget.animal.genre =="mâle"?1:2;
 
   // var date_selected = widget.animal.dateNaissance;
   // int _radioValue = widget.animal.genre =="male"?0:1;
@@ -131,7 +132,7 @@ class _modif_animalState extends State<modif_animal> {
                             style: GoogleFonts.gloriaHallelujah(
                                 textStyle: const TextStyle(letterSpacing: .5)),
                             decoration: ThemeHelper().textInputDecoration(
-                                ' Name', 'Enter your name'),
+                                ' Nom', 'Entrez le nom'),
                             validator: (val) {
                               if (val!.isEmpty) {
                                 return "Please enter  name";
@@ -290,7 +291,7 @@ class _modif_animalState extends State<modif_animal> {
                                     _radioValue = value as int;
                                   });
                                 }),
-                            Text("male"),
+                            Text("mâle"),
                             Radio(
                                 value: 2,
                                 groupValue: _radioValue,
@@ -327,7 +328,7 @@ class _modif_animalState extends State<modif_animal> {
                                   "6331aaecf7d5701dd7df846d",
                                   widget.animal.sId,
                                   name.text,
-                                  _radioValue == 1 ? "male" : "femelle",
+                                  _radioValue == 1 ? "mâle" : "femelle",
                                   date_selected,
                                   etat_sante.text,
                                   poids.text,
@@ -346,7 +347,7 @@ class _modif_animalState extends State<modif_animal> {
                                               borderRadius:
                                                   BorderRadius.circular(4.0)),
                                           child: Stack(
-                                            overflow: Overflow.visible,
+
                                             alignment: Alignment.topCenter,
                                             children: [
                                               Container(
@@ -370,7 +371,7 @@ class _modif_animalState extends State<modif_animal> {
                                                         style: TextStyle(
                                                             fontSize: 20),
                                                       ),
-                                                      RaisedButton(
+                                                      ElevatedButton(
                                                         onPressed: () => Navigator
                                                                 .of(context)
                                                             .pushReplacement(
@@ -378,7 +379,7 @@ class _modif_animalState extends State<modif_animal> {
                                                                     builder:
                                                                         (context) =>
                                                                             list_animal())),
-                                                        color: Colors.green,
+                                                    style: style,
                                                         child: Text(
                                                           'Okay',
                                                           style: TextStyle(

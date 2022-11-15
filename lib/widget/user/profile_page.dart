@@ -1,14 +1,25 @@
 
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:pfe/widget/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../comonents/Drawer.dart';
 import '../../comonents/header_widget.dart';
 
+import '../../config/URL.dart';
+import '../../data/features/User/user.dart';
+import '../../data/features/annonce/anonnce.dart';
+import '../../data/model/User.dart';
+import '../annonce/cart_ads.dart';
+import '../annonce/details_ads.dart';
 import '../index/home_page.dart';
+import 'mes_annonce/details_ads.dart';
 import 'registration_page.dart';
 
 class ProfilePage extends StatefulWidget{
@@ -21,8 +32,11 @@ class ProfilePage extends StatefulWidget{
 
 class _ProfilePageState extends State<ProfilePage>{
 
-
-
+  Future? doc;
+ String? nom ;
+String? addrese;
+  String? mail ;
+  String? phone;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,8 +79,8 @@ class _ProfilePageState extends State<ProfilePage>{
             Container(height: 100, child: HeaderWidget(100,false),),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              // margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
+              // padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Column(
                 children: [
                   Container(
@@ -82,9 +96,8 @@ class _ProfilePageState extends State<ProfilePage>{
                     child: Icon(Icons.person, size: 80, color: Colors.grey.shade300,),
                   ),
                   SizedBox(height: 20,),
-                  Text('Mr. Donald Trump', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                  Text(nom??"", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                   SizedBox(height: 20,),
-                  Text('Former President', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                   SizedBox(height: 10,),
                   Container(
                     padding: EdgeInsets.all(10),
@@ -118,43 +131,132 @@ class _ProfilePageState extends State<ProfilePage>{
                                           contentPadding: EdgeInsets.symmetric(
                                               horizontal: 12, vertical: 4),
                                           leading: Icon(Icons.my_location),
-                                          title: Text("Location"),
-                                          subtitle: Text("USA"),
+                                          title: Text("Localisation"),
+                                          subtitle: Text(addrese??""),
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.email),
                                           title: Text("Email"),
-                                          subtitle: Text("donaldtrump@gmail.com"),
+                                          subtitle: Text(mail??""),
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.phone),
                                           title: Text("Phone"),
-                                          subtitle: Text("99--99876-56"),
+                                          subtitle: Text(phone??""),
                                         ),
-                                        ListTile(
-                                          leading: Icon(Icons.person),
-                                          title: Text("About Me"),
-                                          subtitle: Text(
-                                              "This is a about me link and you can khow about me in this section."),
-                                        ),
+
                                       ],
                                     ),
                                   ],
                                 )
                               ],
+
                             ),
                           ),
-                        )
+                        ),
+                        Text("Mes Annonces  "),
+
+
                       ],
                     ),
-                  )
+                  ),
+                  getBody(),
+
+
                 ],
               ),
-            )
+            ),
+
           ],
         ),
       ),
     );
+  }
+  Widget getBody() {
+
+
+
+
+    return FutureBuilder<dynamic>(
+      future: doc,
+      builder: (
+          BuildContext context,
+          AsyncSnapshot<dynamic> snapshot,
+          ) {
+        print(snapshot.connectionState);
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return  Container (
+            margin: EdgeInsets.only(top: 200),
+            child: CupertinoActivityIndicator(),
+          );
+        } else if (snapshot.connectionState == ConnectionState.done) {
+          print("---------");
+          print(snapshot.data);
+          print("---------");
+          if (snapshot.hasError) {
+
+            return  Text(snapshot.error.toString());
+          } else if (snapshot.hasData) {
+            return GridView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 300,
+                    childAspectRatio: 4 / 4.5,
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5),
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext ctx, index) {
+                  return InkWell(child: cardads(cart4:snapshot.data[index] ,
+
+
+                  ),
+
+
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailsMesAds(
+                                annonce: snapshot.data[index],
+                              )));
+                    },
+
+
+                  );
+                });
+          } else {
+            return const Text('Empty data');
+          }
+        } else {
+          return Text('State: ${snapshot.connectionState}');
+        }
+      },
+    );
+  }
+
+  @override
+  void initState()  {
+
+    doc= getmes("6331aaecf7d5701dd7df846d");
+getprofil();
+
+    // TODO: implement initState
+    super.initState();
+  }
+  getprofil() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      nom = prefs.getString('name')!;
+      addrese = prefs.getString('addresse')!;
+      mail= prefs.getString('mail')!;
+      phone = prefs.getString('phone')!;
+
+
+      print(nom??"");
+    });
+    final String? action = prefs.getString('name');
   }
 
 }

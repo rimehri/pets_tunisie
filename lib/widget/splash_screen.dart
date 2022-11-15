@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'base.dart';
@@ -53,19 +54,19 @@ class _SplashScreenState extends State<SplashScreen> {
               Stack(
                 children: [
                   Container(
-                      margin: const EdgeInsets.only(left: 80,right: 0,top: 150,bottom: 10),
+                      margin: const EdgeInsets.only(left: 70,right: 30,top: 150,bottom: 10),
 
-                      child: Image.asset('assets/aaz.png',)),
-                  Positioned(
-
-                    left: 50,
-                    bottom: 120,
-                    child:
-                    Text("Pets Tunisie" ,
-                      style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(
-                        fontSize: 34.0,
-                        fontWeight: FontWeight.bold,color: Colors.white, letterSpacing: .5)),),
-                  ),
+                      child: SvgPicture.asset('assets/Capture.svg',color: Colors.white,)),
+                  // Positioned(
+                  //
+                  //   left: 50,
+                  //   bottom: 120,
+                  //   child:
+                  //   Text("Pets Tunisie" ,
+                  //     style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(
+                  //       fontSize: 34.0,
+                  //       fontWeight: FontWeight.bold,color: Colors.white, letterSpacing: .5)),),
+                  // ),
                 ],
               ),
 

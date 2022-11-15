@@ -6,13 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pfe/config/constants.dart';
 import 'package:pfe/widget/animal/modif_animal.dart';
+import 'package:pfe/widget/animal/ticket_info_content.dart';
+import '../../comonents/constants.dart';
 import '../../data/model/User.dart';
+import 'clipper.dart';
 import 'list_animl.dart';
 
-class details extends StatelessWidget {
+class details extends StatefulWidget {
   const details({Key? key, required this.animal}) : super(key: key);
   final Animal animal;
 
+  @override
+  State<details> createState() => _detailsState();
+}
+
+class _detailsState extends State<details> {
+  bool _isCollapsed = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -49,7 +58,7 @@ class details extends StatelessWidget {
                                         fontWeight: FontWeight.bold),
                                   ),
                               Text(
-                                animal.typeAnimal!.typename==null?"":animal.typeAnimal!.typename!+"  ",
+                                widget.animal.typeAnimal!.typename==null?"":widget.animal.typeAnimal!.typename!+"  ",
                                style:
                                   TextStyle(
                                     fontSize: 22,
@@ -71,7 +80,7 @@ class details extends StatelessWidget {
                                         fontWeight: FontWeight.bold),
                                   ),
                               Text(
-                                animal.race!.toString()+ "  ",
+                                widget.animal.race!.toString()+ "  ",
                                 style:
                                   TextStyle(
                                     fontSize: 22,
@@ -93,7 +102,7 @@ class details extends StatelessWidget {
                                         fontWeight: FontWeight.bold),
                                   ),
                               Text(
-                                animal.taille.toString() + "m  ",
+                                widget.animal.taille.toString() + "m  ",
                                 style:TextStyle(
                                     fontSize: 22,
                                     color: Colors.black87,
@@ -107,7 +116,7 @@ class details extends StatelessWidget {
                                         fontWeight: FontWeight.bold),
                                   ),
                               Text(
-                                animal.poids.toString() + "kg",
+                                widget.animal.poids.toString() + "kg",
                                 style:  TextStyle(
                                     fontSize: 20,
                                     color: Colors.black87,
@@ -125,7 +134,7 @@ class details extends StatelessWidget {
                               Container(
                                 margin: EdgeInsets.only(left: 20),
                                 alignment: Alignment.topLeft,
-                                  child: Text(animal.etatSante.toString(),style: TextStyle(fontSize: 20, color: Colors.black87,))),
+                                  child: Text(widget.animal.etatSante.toString(),style: TextStyle(fontSize: 20, color: Colors.black87,))),
                             ],
                           ),
                         ),
@@ -137,7 +146,7 @@ class details extends StatelessWidget {
 
                                   alignment: Alignment.topLeft,
                                   child: Text("Remarque : ",style:GoogleFonts.gloriaHallelujah(textStyle: TextStyle(fontSize: 20,color: Color.fromRGBO(0, 147, 148, 1),fontWeight: FontWeight.bold)))),
-                              Text(animal.description!.toString(),style:GoogleFonts.aBeeZee(textStyle:TextStyle(fontSize: 20, color: Colors.black87,))),
+                              Text(widget.animal.description!.toString(),style:GoogleFonts.aBeeZee(textStyle:TextStyle(fontSize: 20, color: Colors.black87,))),
 
 
                             ],
@@ -173,7 +182,7 @@ class details extends StatelessWidget {
                       alignment: Alignment.topLeft,
                       margin: EdgeInsets.only(left: 20,top: 10),
                       child: Text(
-                        animal.name!.toString(),
+                        widget.animal.name!.toString(),
                         style: GoogleFonts.gloriaHallelujah(
                             textStyle: TextStyle(
                                 fontSize: 25,
@@ -192,7 +201,7 @@ class details extends StatelessWidget {
                           onPressed: () {},
                         ),
                         Text(
-                          animal.genre == null ? "male" : animal.genre!,
+                          widget.animal.genre == null ? "male" : widget.animal.genre!,
                           style: GoogleFonts.gloriaHallelujah(
                             textStyle: TextStyle(
                               color: Colors.white,
@@ -204,7 +213,7 @@ class details extends StatelessWidget {
                     Container(
                       alignment: Alignment.topLeft,
                       margin: EdgeInsets.only(top: 0, left: 20),
-                      child: Text(animal.dateNaissance!.toString(),
+                      child: Text(widget.animal.dateNaissance!.toString(),
                             style: GoogleFonts.aBeeZee(
                               textStyle: TextStyle(
                             fontSize: 20,
@@ -225,6 +234,91 @@ class details extends StatelessWidget {
                           width: 150,
                           height: 150,
                         ))),
+                AnimatedPositioned(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                  left: _isCollapsed ? -120 : size.width - 65,
+                  child: Stack(
+                    children: [
+                      ClipPath(
+                        clipper: MyClipper(),
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          height: size.height,
+                          width: size.width + 90,
+                          decoration:  BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  AppConsts.appOrangeColor,
+                                  AppConsts.appDeepOrange,
+                                ],
+                              )),
+                          child: const TicketInfo(),
+                        ),
+                      ),
+                      Positioned(
+                        left: 8,
+                        top: size.height * 0.65 + 37,
+                        child: GestureDetector(
+                          onTap: () => setState(() {
+                            _isCollapsed = !_isCollapsed;
+                          }),
+                          child: Container(
+                            height: 46,
+                            width: 46,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: AppConsts.appBlueColor,
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: AppConsts.appDarkBlueColor,
+                                  blurRadius: 5,
+                                )
+                              ],
+                            ),
+                            child: Center(
+                              child: SvgPicture.asset(
+                                'assets/qr.svg',
+                                color: Colors.white,
+                                height: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        right: 7,
+                        top: size.height * 0.65 + 37,
+                        child: GestureDetector(
+                          onTap: () => setState(() {
+                            _isCollapsed = !_isCollapsed;
+                          }),
+                          child: Container(
+                            height: 46,
+                            width: 46,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: AppConsts.appOrangeColor,
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: AppConsts.appDarkBlueColor,
+                                  blurRadius: 5,
+                                )
+                              ],
+                            ),
+                            child: Center(
+                              child: SvgPicture.asset(
+                                'assets/type.svg',
+                                color: Colors.white,
+                                height: 26,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           )
@@ -232,180 +326,4 @@ class details extends StatelessWidget {
       ),
     );
   }
-
-// Positioned(
-// bottom: 0,
-// child: Container(
-// width: MediaQuery
-//     .of(context)
-//     .size
-//     .width,
-//
-// height: MediaQuery
-//     .of(context)
-//     .size
-//     .height * 0.65,
-// decoration: BoxDecoration(
-// borderRadius: BorderRadius.only(
-// topRight: Radius.circular(40.0),
-// topLeft: Radius.circular(40.0)),
-// color: Colors.white
-// ),
-//
-// )),
-// Positioned(
-// top: 40,
-// left: 20,
-//
-// child: Icon(Icons.arrow_back_ios, color: Colors.white,),),
-// Positioned(
-// top: 100,
-// left: 30,
-//
-// child: Column(
-//
-// children: [
-// Text(animal.name!, style: GoogleFonts.gloriaHallelujah(
-// textStyle: TextStyle(fontSize: 25,
-// color: Colors.white,
-// fontWeight: FontWeight.bold)),),
-// Row(
-//
-// children: [
-// IconButton(
-//
-// icon:
-// SvgPicture.asset("assets/genre.svg",
-// color: Colors.white,
-// width: 30.0,
-//
-// ),
-// onPressed: () {},
-// ),
-// Text(
-// animal.genre == null ? "male" : animal.genre!,
-// style: GoogleFonts.gloriaHallelujah(
-// textStyle: TextStyle(
-// color: Colors.white,
-// ),
-// ),)
-// ],
-// ),
-// Text(animal.dateNaissance!,
-// style: GoogleFonts.gloriaHallelujah(
-// textStyle: TextStyle(
-// fontSize: 20, color: Colors.white,)))
-// ],
-// )),
-// Positioned(
-// top: 120,
-// // right: 10,
-// left: 180,
-// child: ClipRRect(
-// borderRadius: BorderRadius.circular(100.0),
-//
-// child: Image.asset(
-// 'assets/kitten-510651.jpg', fit: BoxFit.cover, width: 200,
-// height: 200,))),
-// }
-// Positioned(
-// top: 320,
-// left: 30,
-//
-// child: Column(
-// mainAxisAlignment: MainAxisAlignment.start,
-// children: [
-// Row(
-// children: [
-// Row(
-// children: [
-// Text("Type: ", style: GoogleFonts.gloriaHallelujah(
-// textStyle: TextStyle(fontSize: 25,
-// color: Color.fromRGBO(173, 40, 93, 1),
-// fontWeight: FontWeight.bold),)),
-// Text(animal.typeAnimal!.typename!+"  ", style: GoogleFonts.gloriaHallelujah(
-// textStyle: TextStyle(fontSize: 22,
-// color: Colors.black38,
-// ),),
-// )],
-// ),
-// Row(
-// children: [
-// Text("Race: ", style: GoogleFonts.gloriaHallelujah(
-// textStyle: TextStyle(fontSize: 25,
-// color: Color.fromRGBO(173, 40, 93, 1),
-// fontWeight: FontWeight.bold),)),
-// Text(animal.race!, style: GoogleFonts.gloriaHallelujah(
-// textStyle: TextStyle(fontSize: 22,
-// color: Colors.black38,
-// ),),
-// )],
-// ),
-// ],
-// ),
-// Row(
-// children: [
-// Row(
-// children: [
-// Text("Taille: ", style: GoogleFonts.gloriaHallelujah(
-// textStyle: TextStyle(fontSize: 25,
-// color: Color.fromRGBO(173, 40, 93, 1),
-// fontWeight: FontWeight.bold),)),
-// Text(animal.taille.toString()+"m  ", style: GoogleFonts.gloriaHallelujah(
-// textStyle: TextStyle(fontSize: 22,
-// color: Colors.black38,
-// ),),
-// )],
-// ),
-// Row(
-// children: [
-// Text("Poids: ", style: GoogleFonts.gloriaHallelujah(
-// textStyle: TextStyle(fontSize: 25,
-// color: Color.fromRGBO(173, 40, 93, 1),
-// fontWeight: FontWeight.bold),)),
-// Text(animal.poids.toString()+"kg", style: GoogleFonts.gloriaHallelujah(
-// textStyle: TextStyle(fontSize: 22,
-// color: Colors.black38,
-// ),),
-// )],
-// ),
-// ],
-// ),
-// ],
-// )),
-// Container(
-// color:Colors.blueGrey,
-// margin: EdgeInsets.only(left: 10,top:450,bottom: 250 ),
-// child: Column(children: [
-//
-//
-// Text("état de santé  ",style:GoogleFonts.gloriaHallelujah(textStyle: TextStyle(fontSize: 20, color: Color.fromRGBO(173, 40, 93, 1),))),
-// Text(animal.etatSante!,style:GoogleFonts.gloriaHallelujah(textStyle: TextStyle(fontSize: 20, color: Colors.black54,))),
-// ],),
-// ),
-// Container(
-// color: Colors.grey,
-// margin: EdgeInsets.only(left: 10,top:550,bottom: 150 ),
-// child: Column(children: [
-//
-//
-// Text("Remarque ",style:GoogleFonts.gloriaHallelujah(textStyle: TextStyle(fontSize: 20, color: Color.fromRGBO(173, 40, 93, 1),))),
-// Text(animal.description!,style:GoogleFonts.gloriaHallelujah(textStyle: TextStyle(fontSize: 20, color: Colors.black54,))),
-// ],),
-// ),
-//
-// Positioned(
-// top: 200,
-// left: 50,
-// child: Container(
-//
-// margin: EdgeInsets.only(left: 10,top:450 ),
-// child: Column(children: [
-//
-//
-// Text("List des Evenements   ",style:GoogleFonts.gloriaHallelujah(textStyle: TextStyle(fontSize: 20, color: Color.fromRGBO(173, 40, 93, 1),))),
-//
-// ],),
-// ),
-// ),
 }
