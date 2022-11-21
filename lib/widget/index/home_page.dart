@@ -46,7 +46,7 @@ class _home_pageState extends State<home_page> {
           child:Column(
             children: [
               card_blog(),
-              Categories(),
+              //Categories(),
               body()
             ],
           )

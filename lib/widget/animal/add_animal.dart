@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cupertino_radio_choice/cupertino_radio_choice.dart';
 import 'package:intl/intl.dart';
 import 'package:pfe/widget/animal/utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../comonents/header_widget.dart';
 import '../../comonents/theme_helper.dart';
 import '../../data/features/User/user.dart';
@@ -28,6 +29,7 @@ class _add_animalState extends State<add_animal> {
   DateTime dateTime = DateTime.now();
   var date_selected = DateFormat('yyyy/MM/dd').format(DateTime.now());
   String? select;
+  String? Id;
   TextEditingController taille = TextEditingController();
   TextEditingController name = TextEditingController();
   TextEditingController genre = TextEditingController();
@@ -36,17 +38,18 @@ class _add_animalState extends State<add_animal> {
   TextEditingController etat_sante = TextEditingController();
   TextEditingController type = TextEditingController();
   TextEditingController descrption = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle style =
-    ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20),backgroundColor: Color.fromRGBO(59, 120, 121, 1),);
+    final ButtonStyle style = ElevatedButton.styleFrom(
+      textStyle: const TextStyle(fontSize: 20),
+      backgroundColor: Color.fromRGBO(59, 120, 121, 1),
+    );
     String password = "";
 
     bool checkedValue = false;
     //late SharedPreferences sharedPreferences;
     bool checkboxValue = false;
-
-
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -110,12 +113,12 @@ class _add_animalState extends State<add_animal> {
                         Container(
                           child: TextFormField(
                             controller: name,
-                            onChanged: (n)=>password =n,
+                            onChanged: (n) => password = n,
                             onSaved: (newValue) => password = newValue!,
                             style: GoogleFonts.gloriaHallelujah(
                                 textStyle: const TextStyle(letterSpacing: .5)),
-                            decoration: ThemeHelper().textInputDecoration(
-                                ' Nom', 'Entrez le  nom'),
+                            decoration: ThemeHelper()
+                                .textInputDecoration(' Nom', 'Entrez le  nom'),
                             validator: (val) {
                               if (val!.isEmpty) {
                                 return "Please enter  name";
@@ -168,7 +171,6 @@ class _add_animalState extends State<add_animal> {
                             controller: race,
                             style: GoogleFonts.gloriaHallelujah(
                                 textStyle: TextStyle(letterSpacing: .5)),
-
                             decoration: ThemeHelper()
                                 .textInputDecoration("Race", "Enter race"),
                             validator: (val) {
@@ -188,13 +190,11 @@ class _add_animalState extends State<add_animal> {
                               width: 150,
                               child: TextFormField(
                                 controller: taille,
-
                                 style: GoogleFonts.gloriaHallelujah(
                                     textStyle:
                                         const TextStyle(letterSpacing: .5)),
                                 decoration: ThemeHelper().textInputDecoration(
                                     "taille", "entrer taille"),
-
                                 keyboardType: TextInputType.number,
                                 validator: (val) {
                                   if (val!.isEmpty) {
@@ -209,9 +209,9 @@ class _add_animalState extends State<add_animal> {
                               width: 150,
                               child: TextFormField(
                                 controller: poids,
-                                     onChanged: (val){
-                                  password = val ;
-                                     },
+                                onChanged: (val) {
+                                  password = val;
+                                },
                                 style: GoogleFonts.gloriaHallelujah(
                                     textStyle:
                                         const TextStyle(letterSpacing: .5)),
@@ -255,7 +255,6 @@ class _add_animalState extends State<add_animal> {
                                 textStyle: const TextStyle(letterSpacing: .5)),
                             decoration: ThemeHelper().textInputDecoration(
                                 "Description", "entrer descripion"),
-
                             validator: (val) {
                               if (val!.isEmpty) {
                                 return "Enter a  description";
@@ -310,7 +309,7 @@ class _add_animalState extends State<add_animal> {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
                                 await addanimal(
-                                    "6341deacafd4c19c8c395303",
+                                   "637b687b02ee97c0c6aed942",
                                     name.text,
                                     _radioValue == 1 ? "mâle" : "femelle",
                                     date_selected,
@@ -319,7 +318,7 @@ class _add_animalState extends State<add_animal> {
                                     race.text,
                                     taille.text,
                                     type.text,
-                                descrption.text);
+                                    descrption.text);
 
                                 showDialog<String>(
                                     context: context,
@@ -329,7 +328,6 @@ class _add_animalState extends State<add_animal> {
                                               borderRadius:
                                                   BorderRadius.circular(4.0)),
                                           child: Stack(
-
                                             alignment: Alignment.topCenter,
                                             children: [
                                               Container(
@@ -341,7 +339,7 @@ class _add_animalState extends State<add_animal> {
                                                           20, 50, 10, 10),
                                                   child: Column(
                                                     children: [
-                                                  const    Text(
+                                                      const Text(
                                                         'Information',
                                                         style: TextStyle(
                                                             fontWeight:
@@ -361,7 +359,6 @@ class _add_animalState extends State<add_animal> {
                                                                     builder:
                                                                         (context) =>
                                                                             list_animal())),
-
                                                         child: Text(
                                                           'Okay',
                                                           style: TextStyle(
@@ -427,4 +424,21 @@ class _add_animalState extends State<add_animal> {
               setState(() => this.dateTime = dateTime),
         ),
       );
+  Future getvadationData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? ID = prefs.getString("id");
+
+    setState(() {
+      Id = ID!;
+    });
+
+
+
+  }
+  @override
+  void initState() {
+    getvadationData();
+    // TODO: implement initState
+    super.initState();
+  }
 }

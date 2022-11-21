@@ -14,14 +14,14 @@ class OtpScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
 
-leading: InkWell(
-        child: Icon(Icons.arrow_back_ios,color: Colors.black45,),
-    onTap: (){
-    //After successful login we will redirect to profile page. Let's create profile page now
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RegistrationPage()));
-    },),
+        leading: InkWell(
+          child: Icon(Icons.arrow_back_ios,color: Colors.black45,),
+          onTap: (){
+            //After successful login we will redirect to profile page. Let's create profile page now
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RegistrationPage()));
+          },),
         elevation: 0,
-backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
       ),
       body: Body(),
     );

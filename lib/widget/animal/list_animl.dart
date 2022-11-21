@@ -6,6 +6,7 @@ import 'package:pfe/data/features/User/user.dart';
 import 'package:pfe/widget/animal/add_animal.dart';
 import 'package:pfe/widget/animal/card.dart';
 import 'package:pfe/widget/animal/details.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../comonents/Drawer.dart';
 import '../../data/model/User.dart';
@@ -19,6 +20,7 @@ class list_animal extends StatefulWidget {
 
 class _list_animalState extends State<list_animal> {
   Future? doc;
+  String Id ="";
   final ButtonStyle style =
   ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
   @override
@@ -224,10 +226,23 @@ class _list_animalState extends State<list_animal> {
       },
     );
   }
+  Future getvadationData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? ID = prefs.getString("id");
+print(Id);
+setState(() {
+  Id = ID!;
+});
 
+
+
+  }
   @override
   void initState() {
-    doc = getanimal("635a95b07bac467cb2ab8690");
+print(Id);
     super.initState();
+    getvadationData();
+
+    doc = getanimal(Id);
   }
 }

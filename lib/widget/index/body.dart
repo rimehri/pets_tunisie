@@ -25,7 +25,7 @@ class body extends StatelessWidget {
     return Container(
 
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height*0.35,
+      height: MediaQuery.of(context).size.height,
       child: ListView.builder(
 
           scrollDirection: Axis.vertical,

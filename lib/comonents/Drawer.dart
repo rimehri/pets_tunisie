@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pfe/widget/services/list-service.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../widget/animal/list_animl.dart';
 import '../widget/annonce/all_ads.dart';
 
@@ -141,12 +141,20 @@ class _drawerState extends State<drawer> {
               leading: Icon(FontAwesomeIcons.rightFromBracket, size: _drawerIconSize, color: Color.fromRGBO(59, 120, 121, 1),),
               title: Text('Se déconnecter',style: GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: _drawerFontSize,color: Color.fromRGBO(59, 120, 121, 0.7))),),
               onTap: () {
-                Navigator.push( context, MaterialPageRoute(builder: (context) => LoginPage()), );
+                logoutUser();
               },
             ),
           ],
         ),
       ) ,
     );
+  }
+  void logoutUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.remove("token");
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
+
   }
 }

@@ -5,8 +5,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pfe/widget/user/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'base.dart';
+import 'index/home_page.dart';
 
 
 
@@ -20,15 +23,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  String token1=" ";
   @override
   void initState() {
     super.initState();
-    loadData();
+    getvadationData().whenComplete(() async {
+      Timer(
+          Duration(seconds: 5),
+              () => token1 ==" " ?Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => base())):Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => home_page())));
+    });
   }
 
-  Future<Timer> loadData() async {
-    return Timer(Duration(seconds: 4), onDoneLoading);
-  }
 
   onDoneLoading() async {
     Navigator.of(context)
@@ -87,5 +94,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
 
     );
+  }
+  Future getvadationData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("token");
+
+    token1= token!;
+    print(token );
+    print('token ');
+    print(token1);
+
   }
 }

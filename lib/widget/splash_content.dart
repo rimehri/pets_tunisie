@@ -7,7 +7,7 @@ class SplashContent extends StatelessWidget {
   const SplashContent({
     Key? key,
     required this.text,
-     required this.image,
+    required this.image,
   }) : super(key: key);
   final String text, image;
 
@@ -20,8 +20,8 @@ class SplashContent extends StatelessWidget {
             fontSize: 34.0,
             fontWeight: FontWeight.bold,color: Color.fromRGBO(59, 120, 121, 1), letterSpacing: .4)),),
         Text(
-          text,
-          textAlign: TextAlign.center,
+            text,
+            textAlign: TextAlign.center,
             style: GoogleFonts.gloriaHallelujah(textStyle: TextStyle(
                 fontSize: getProportionateScreenWidth(18),
                 fontWeight: FontWeight.bold, letterSpacing: .5))
