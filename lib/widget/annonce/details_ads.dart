@@ -219,7 +219,7 @@ class _DetailsAdsState extends State<DetailsAds> {
                             Container(
                               margin: EdgeInsets.only(top:10,right: 100),
                               child: Text(
-                                "Rimeh Berrichi ",
+                                widget.annonce.user!,
                                 style:GoogleFonts.gloriaHallelujah (textStyle:TextStyle(fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 ),
@@ -245,7 +245,11 @@ class _DetailsAdsState extends State<DetailsAds> {
           Positioned(
             bottom: 20,
             right: 20,
+            left: 220,
             child: Container(
+              height: 50,
+
+
               decoration: BoxDecoration(
                   color: Color.fromRGBO(
                     173,
@@ -254,35 +258,26 @@ class _DetailsAdsState extends State<DetailsAds> {
                     1,
                   ),
                   borderRadius: BorderRadius.circular(15)),
-              child: ElevatedButton(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(Icons.message,color: Colors.white,),
 
-                onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => howScreen()),
-                  // );
-
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(Icons.message,color: Colors.white,),
-                    SizedBox(width: 10,),
-                    Text(
-                    "Message ",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-
+                  Text(
+                  "Message ",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
             ),
           ),
           Positioned(
             bottom: 20,
             left: 20,
+            right: 220,
+
             child: Container(
+              height: 50,
               decoration: BoxDecoration(
                   color: Color.fromRGBO(
                     38,
@@ -291,28 +286,16 @@ class _DetailsAdsState extends State<DetailsAds> {
                     1,
                   ),
                   borderRadius: BorderRadius.circular(15)),
-              child: ElevatedButton(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(Icons.phone,color: Colors.white,),
 
-                onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => howScreen()),
-                  // );
-
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(Icons.phone,color: Colors.white,),
-                    SizedBox(width: 10,),
-                    Text(
-                      "51803386 ",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-
+                  Text(
+                    "51803386 ",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
             ),
           ),

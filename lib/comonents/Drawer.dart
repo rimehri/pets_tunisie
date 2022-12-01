@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pfe/widget/events/index_events.dart';
 import 'package:pfe/widget/services/list-service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../widget/animal/list_animl.dart';
@@ -138,6 +139,14 @@ class _drawerState extends State<drawer> {
             ),
             Divider( color: Color.fromRGBO(59, 120, 121, 1), height: 1,),
             ListTile(
+              leading: Icon(FontAwesomeIcons.adversal, size: _drawerIconSize, color: Color.fromRGBO(59, 120, 121, 1),),
+              title: Text('les evenments ',style:GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: _drawerFontSize,color: Color.fromRGBO(59, 120, 121, 0.7))),),
+              onTap: () {
+                Navigator.push( context, MaterialPageRoute(builder: (context) => index_events()),);
+              },
+            ),
+            Divider( color: Color.fromRGBO(59, 120, 121, 1), height: 1,),
+            ListTile(
               leading: Icon(FontAwesomeIcons.rightFromBracket, size: _drawerIconSize, color: Color.fromRGBO(59, 120, 121, 1),),
               title: Text('Se déconnecter',style: GoogleFonts.gloriaHallelujah(textStyle:  TextStyle(fontSize: _drawerFontSize,color: Color.fromRGBO(59, 120, 121, 0.7))),),
               onTap: () {
@@ -153,6 +162,7 @@ class _drawerState extends State<drawer> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.remove("token");
+    prefs.remove("id");
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
 

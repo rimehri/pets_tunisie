@@ -86,7 +86,10 @@ class Listproduit extends StatelessWidget {
         ),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
-        onTap: (index) {},
+        onTap: (index) {
+
+          
+        },
         color: AppConsts.appDeepOrange,
         height: 70,
         items: [

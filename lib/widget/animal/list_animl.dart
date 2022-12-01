@@ -20,7 +20,7 @@ class list_animal extends StatefulWidget {
 
 class _list_animalState extends State<list_animal> {
   Future? doc;
-  String Id ="";
+   late  String  Id="";
   final ButtonStyle style =
   ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
   @override
@@ -66,7 +66,7 @@ class _list_animalState extends State<list_animal> {
 
   Widget getBody() {
     return FutureBuilder<dynamic>(
-      future: doc,
+      future: getanimal(Id),
       builder: (
         BuildContext context,
         AsyncSnapshot<dynamic> snapshot,
@@ -82,8 +82,8 @@ class _list_animalState extends State<list_animal> {
           print(snapshot.data);
           print("---------");
           if (snapshot.hasError) {
-            return const Text('Error');
-          } else if (snapshot.hasData) {
+            return  Text("Serveur Indisponible");
+          } else if (snapshot.data.animal.length>0) {
             return ListView.builder(
                 primary: false,
                 shrinkWrap: true,
@@ -169,8 +169,8 @@ class _list_animalState extends State<list_animal> {
                                                       ),
                                                       child: ElevatedButton(
                                                         onPressed: () async {
-                                                          await deleteanimal(
-                                                          "6331aaecf7d5701dd7df846d",
+                                                          await deleteanimal(Id,
+
                                                           snapshot.data.animal[index].sId
                                                           );
                                                           Navigator.pop(context);
@@ -229,7 +229,7 @@ class _list_animalState extends State<list_animal> {
   Future getvadationData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? ID = prefs.getString("id");
-print(Id);
+
 setState(() {
   Id = ID!;
 });
@@ -239,10 +239,10 @@ setState(() {
   }
   @override
   void initState() {
-print(Id);
-    super.initState();
-    getvadationData();
 
-    doc = getanimal(Id);
+getvadationData();
+getBody();
+    super.initState();
+
   }
 }

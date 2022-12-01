@@ -29,7 +29,7 @@ class _add_animalState extends State<add_animal> {
   DateTime dateTime = DateTime.now();
   var date_selected = DateFormat('yyyy/MM/dd').format(DateTime.now());
   String? select;
-  String? Id;
+  late  String  Id="";
   TextEditingController taille = TextEditingController();
   TextEditingController name = TextEditingController();
   TextEditingController genre = TextEditingController();
@@ -309,7 +309,7 @@ class _add_animalState extends State<add_animal> {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
                                 await addanimal(
-                                   "637b687b02ee97c0c6aed942",
+                                   Id,
                                     name.text,
                                     _radioValue == 1 ? "mâle" : "femelle",
                                     date_selected,
@@ -328,6 +328,7 @@ class _add_animalState extends State<add_animal> {
                                               borderRadius:
                                                   BorderRadius.circular(4.0)),
                                           child: Stack(
+                                            clipBehavior: Clip.none,
                                             alignment: Alignment.topCenter,
                                             children: [
                                               Container(

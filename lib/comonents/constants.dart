@@ -23,7 +23,7 @@ const kTextColor = Color(0xFF757575);
 
 const kAnimationDuration = Duration(milliseconds: 200);
 
-final headingStyle =
+final headingStyle3 =
 
   GoogleFonts.gloriaHallelujah(textStyle: TextStyle(
       fontSize: getProportionateScreenWidth(28),

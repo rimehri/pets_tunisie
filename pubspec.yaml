@@ -36,12 +36,16 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
   hexcolor: ^2.0.7
+  get: ^4.6.5
+  date_picker_timeline:
   dotted_border: ^2.0.0+2
   font_awesome_flutter: ^10.2.1
   otp_text_field: ^1.1.3
   flutter_native_splash: ^2.1.1
   flutter_svg: ^1.0.3
   url_launcher: ^6.1.6
+  flutter_staggered_animations:
+  sqflite:
 
   flutter_custom_tabs: ^1.0.4
   fluttertoast: ^8.0.9

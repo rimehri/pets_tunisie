@@ -5,6 +5,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../comonents/header_widget.dart';
 import '../../comonents/theme_helper.dart';
@@ -19,6 +20,7 @@ class add_annonce extends StatefulWidget {
 }
 
 class _add_annonceState extends State<add_annonce> {
+  late  String  Id="";
   final _formKey = GlobalKey<FormState>();
   DateTime dateTime = DateTime.now();
   int _radioValue = 0;
@@ -253,7 +255,7 @@ centerTitle: true,
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
                                 await addannonce(
-                                    "6331aaecf7d5701dd7df846d",
+                                    Id,
                                     titre.text,
                                     categorie.text,
                                     _radioValue == 1 ? "demande" : "offre",
@@ -273,6 +275,7 @@ centerTitle: true,
                                           borderRadius:
                                           BorderRadius.circular(4.0)),
                                       child: Stack(
+                                        clipBehavior: Clip.none,
 
                                         alignment: Alignment.topCenter,
                                         children: [
@@ -350,5 +353,22 @@ centerTitle: true,
         ),
       ),
     );
+  }
+
+  Future getvadationData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? ID = prefs.getString("id");
+
+    setState(() {
+      Id = ID!;
+    });
+
+
+
+  }
+  @override
+  void initState() {
+getvadationData();
+    super.initState();
   }
 }

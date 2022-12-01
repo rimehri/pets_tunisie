@@ -275,7 +275,7 @@ class _edit_annonceState extends State<edit_annonce> {
                                           borderRadius:
                                           BorderRadius.circular(4.0)),
                                       child: Stack(
-
+clipBehavior: Clip.none,
                                         alignment: Alignment.topCenter,
                                         children: [
                                           Container(

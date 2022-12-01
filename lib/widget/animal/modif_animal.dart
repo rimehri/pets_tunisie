@@ -347,7 +347,7 @@ class _modif_animalState extends State<modif_animal> {
                                               borderRadius:
                                                   BorderRadius.circular(4.0)),
                                           child: Stack(
-
+                                            clipBehavior: Clip.none,
                                             alignment: Alignment.topCenter,
                                             children: [
                                               Container(

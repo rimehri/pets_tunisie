@@ -28,7 +28,13 @@ final Annonce annonce ;
 
 class _DetailsMesAdsState extends State<DetailsMesAds> {
   int currentPage = 0;
+
+  final ButtonStyle style =
+  ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20),backgroundColor: Colors.green,);
  ScrollController? _scrollController;
+  final ButtonStyle style2 =
+  ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20),backgroundColor: Colors.red,);
+
   List<Map<String, String>> ann = [
     {
 
@@ -150,6 +156,7 @@ annonce: widget.annonce,
                                         .circular(20),
                                   ),
                                   child: ElevatedButton(
+                                    style: style2,
                                     onPressed: () =>
                                         Navigator.pop(
                                             context),
@@ -169,6 +176,7 @@ annonce: widget.annonce,
                                         .circular(20),
                                   ),
                                   child: ElevatedButton(
+                                    style: style,
                                     onPressed: () async {
                                       await deleteannonce(
                                           widget.annonce.sId!,
@@ -360,7 +368,11 @@ annonce: widget.annonce,
           Positioned(
             bottom: 20,
             right: 20,
+            left: 220,
             child: Container(
+              height: 50,
+
+
               decoration: BoxDecoration(
                   color: Color.fromRGBO(
                     173,
@@ -369,35 +381,26 @@ annonce: widget.annonce,
                     1,
                   ),
                   borderRadius: BorderRadius.circular(15)),
-              child: ElevatedButton(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(Icons.message,color: Colors.white,),
 
-                onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => howScreen()),
-                  // );
-
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(Icons.message,color: Colors.white,),
-                    SizedBox(width: 10,),
-                    Text(
+                  Text(
                     "Message ",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
             ),
           ),
           Positioned(
             bottom: 20,
             left: 20,
+            right: 220,
+
             child: Container(
+              height: 50,
               decoration: BoxDecoration(
                   color: Color.fromRGBO(
                     38,
@@ -406,28 +409,16 @@ annonce: widget.annonce,
                     1,
                   ),
                   borderRadius: BorderRadius.circular(15)),
-              child: ElevatedButton(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(Icons.phone,color: Colors.white,),
 
-                onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => howScreen()),
-                  // );
-
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(Icons.phone,color: Colors.white,),
-                    SizedBox(width: 10,),
-                    Text(
-                      "51803386 ",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-
+                  Text(
+                    "51803386 ",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
             ),
           ),

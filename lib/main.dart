@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pfe/data/db_helper.dart';
 import 'package:pfe/widget/splash_screen.dart';
 
-void main() {
+Future <void> main() async {
+    await DbHelper.initdb();
+
     runApp(const MyApp());
 }
 
@@ -11,7 +15,7 @@ class MyApp extends StatelessWidget {
     // This widget is the root of your application.
     @override
     Widget build(BuildContext context) {
-        return const MaterialApp(
+        return const GetMaterialApp (
             debugShowCheckedModeBanner: false,
             title: 'Tunisie Pets',
 

@@ -26,7 +26,7 @@ double getProportionateScreenHeight(double inputHeight) {
 // Get the proportionate height as per screen size
 double getProportionateScreenWidth(double inputWidth) {
   double? screenWidth = SizeConfig.screenWidth;
- var lent = screenWidth??0;
+  var lent = screenWidth??0;
   // 375 is the layout width that designer use
   return (  inputWidth / 375.0) * lent;
 }

@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:hexcolor/hexcolor.dart';
 
@@ -93,5 +93,50 @@ class ThemeHelper{
 }
 
 class LoginFormStyle{
+
+}
+TextStyle get subHeadingStyle{
+  return GoogleFonts.lato(
+    textStyle: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+
+    )
+
+  );
+
+}
+TextStyle get subHeadingStyle2{
+  return GoogleFonts.lato(
+      textStyle: TextStyle(
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+
+      )
+
+  );
+
+}
+TextStyle get titlestyle{
+  return GoogleFonts.lato(
+      textStyle: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+
+      )
+
+  );
+
+}
+TextStyle get subtitlestyle{
+  return GoogleFonts.lato(
+      textStyle: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: Colors.black87
+
+      )
+
+  );
 
 }

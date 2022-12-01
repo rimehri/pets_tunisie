@@ -31,7 +31,7 @@ class ProfilePage extends StatefulWidget{
 }
 
 class _ProfilePageState extends State<ProfilePage>{
-
+  late  String  Id="";
   Future? doc;
  String? nom ;
 String? addrese;
@@ -178,7 +178,7 @@ String? addrese;
 
 
     return FutureBuilder<dynamic>(
-      future: doc,
+      future: getmes(Id),
       builder: (
           BuildContext context,
           AsyncSnapshot<dynamic> snapshot,
@@ -239,7 +239,7 @@ String? addrese;
   @override
   void initState()  {
 
-    doc= getmes("6331aaecf7d5701dd7df846d");
+    getBody();
 getprofil();
 
     // TODO: implement initState
@@ -252,6 +252,9 @@ getprofil();
       addrese = prefs.getString('addresse')!;
       mail= prefs.getString('mail')!;
       phone = prefs.getString('phone')!;
+      String? ID = prefs.getString("id");
+
+        Id = ID!;
 
 
       print(nom??"");
