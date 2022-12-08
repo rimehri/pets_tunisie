@@ -2,9 +2,10 @@ class Event{
   
   int? id ; 
   String? title;
-  String? note ; 
+  String? note ;
+  String? date ;
   int? isCompleted; 
-  String? date ; 
+
   String? startTime; 
   String? endTime ;
   int? color;
@@ -12,7 +13,7 @@ class Event{
   String? repeat ;
 
   Event({
-      this.id ,  required this.title,required this.note, required this.isCompleted, required this.date,
+      this.id ,  required this.title,required this.note, required this.date, required this.isCompleted,
     required   this.startTime, required this.endTime, required  this.color,required this.remind,required this.repeat,} );
 
   @override
@@ -22,10 +23,11 @@ class Event{
   Map<String,dynamic> toJson(){
     final Map <String,dynamic>  data = new Map<String,dynamic>();
     data['id'] = this.id;
-    data['title'] = this.id;
-    data['date'] = this.id;
-    data['note'] = this.id;
-    data['isCompleted'] = this.id;
+    data['title'] = this.title;
+
+    data['note'] = this.note;
+    data['date'] = this.date;
+    data['isCompleted'] = this.isCompleted;
     data['startTime'] = this.startTime;
     data['endTime'] = this.endTime;
     data['color'] = this.color;
@@ -36,8 +38,9 @@ class Event{
   Event.fromJson(Map<String,dynamic> json){
     id = json['id'];
     title = json['title'];
-    date = json['date'];
+
     note = json['note'];
+    date = json['date'];
     isCompleted = json['isCompleted'];
     startTime = json['startTime'];
     endTime = json['endTime'];

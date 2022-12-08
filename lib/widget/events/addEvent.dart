@@ -11,6 +11,7 @@ import 'package:pfe/data/features/events/EventController.dart';
 
 import '../../comonents/constants.dart';
 import '../../config/constants.dart';
+import '../../data/db_helper.dart';
 import '../../data/model/Event.dart';
 import 'index_events.dart';
 import 'inputFile.dart';
@@ -25,6 +26,7 @@ class addEvents extends StatefulWidget {
 class _addEventsState extends State<addEvents> {
  final  EventController _eventController = Get.put(EventController());
   DateTime _selectedDate = DateTime.now() ;
+ DbHelper _sqlDb = DbHelper();
   String _endTime="9.30 PM";
   TextEditingController _titleController = TextEditingController();
   TextEditingController _noteController = TextEditingController();
@@ -183,6 +185,7 @@ List <int> remindList=[
                       MyButton(label: "Create ", onTap: (){
 
                         _validateDate();
+                        Get.back();
                       })
                     ],
                   )
@@ -244,12 +247,28 @@ setState(() {
         minute:  int.parse(_startTime.split(":")[1].split(" ")[0]),
     ));
   }
-  _validateDate(){
+  _validateDate() async {
+    String? title = _titleController.text;
+    String? note = _noteController.text;
     if(_titleController.text.isNotEmpty&&_noteController.text.isNotEmpty){
-_addEventsTodB();
+int response = await  _sqlDb.insertData(  Event(
+
+  title:_titleController.text,
+
+  note:_noteController.text,
+  date :DateFormat.yMd().format(_selectedDate),
+  isCompleted:0,
+
+  startTime:_startTime,
+  endTime:_endTime ,
+  color:_selectedcolor,
+  remind :_selectedRemind,
+  repeat : _selectedRepeat,
+
+));
+print(response);
 //Get.back();
-    }
-    if(_titleController.text.isEmpty||_noteController.text.isEmpty){
+    } else
       Fluttertoast.showToast(
           msg: "Required: All fields are required",
           toastLength: Toast.LENGTH_SHORT,
@@ -261,24 +280,24 @@ _addEventsTodB();
 
     }
   }
-  _addEventsTodB () async {
-  int  value =  await _eventController.addEvent(
-   event: Event(
-      title:_titleController.text,
-      note:_noteController.text,
+//   _addEventsTodB () async {
+//   int?  value =  await _eventController.addEvent(
+//    event: Event(
+//       title:_titleController.text,
+//       note:_noteController.text,
+//
+//    isCompleted:0,
+//    date :DateFormat.yMd().format(_selectedDate),
+//    startTime:_startTime,
+//    endTime:_endTime ,
+//    color:_selectedcolor,
+//   remind :_selectedRemind,
+//   repeat : _selectedRepeat,
+//
+//         ));
+//   print("My id is "+"$value");
+// }
 
-   isCompleted:0,
-   date :DateFormat.yMd().format(_selectedDate),
-   startTime:_startTime,
-   endTime:_endTime ,
-   color:_selectedcolor,
-  remind :_selectedRemind,
-  repeat : _selectedRepeat,
-
-        ));
-  print("My id is "+"$value");
-}
-}
 
 
 

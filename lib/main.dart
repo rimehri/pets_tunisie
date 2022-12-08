@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:pfe/data/db_helper.dart';
 import 'package:pfe/widget/splash_screen.dart';
 
-Future <void> main() async {
-    await DbHelper.initdb();
+void main()  {
+
+
+    print("g=hello");
 
     runApp(const MyApp());
 }

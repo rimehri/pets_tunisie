@@ -13,14 +13,14 @@ class EventController extends GetxController {
   super.onReady();
 }
 var eventList = <Event> [].obs;
-Future <int >   addEvent({Event? event}) async {
-  return await  DbHelper.insert(event!) ;
+Future <int?>   addEvent({ Event? event}) async {
+  return await  DbHelper.insert(event) ;
 
 }
-void getEvent() async {
-  List<Map<String,dynamic>>? events = await DbHelper.query();
-  eventList.assignAll(events!.map((data ) => new Event.fromJson(data)).toList());
-}
+// void getEvent() async {
+//   List<Map<String,dynamic>>? events = await DbHelper.query();
+//   eventList.assignAll(events!.map((data ) => new Event.fromJson(data)).toList());
+// }
 void delete(Event event ){
   DbHelper.delete(event);
 
