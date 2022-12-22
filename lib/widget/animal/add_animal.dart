@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,16 +9,24 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cupertino_radio_choice/cupertino_radio_choice.dart';
 import 'package:intl/intl.dart';
+import 'package:pfe/widget/animal/inputFiled.dart';
+import 'package:pfe/widget/animal/uploadImage/media_source.dart';
+import 'package:pfe/widget/animal/uploadImage/source_page.dart';
 import 'package:pfe/widget/animal/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../comonents/header_widget.dart';
 import '../../comonents/theme_helper.dart';
+import '../../config/URL.dart';
+import '../../data/features/User/typeanimal.dart';
 import '../../data/features/User/user.dart';
+import '../../data/model/TypeAnimal.dart';
 import '../../data/model/User.dart';
+import '../events/inputFile.dart';
 import '../user/login_page.dart';
 import 'button_widget.dart';
 import 'list_animl.dart';
 
+const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 class add_animal extends StatefulWidget {
   const add_animal({Key? key}) : super(key: key);
 
@@ -25,6 +36,18 @@ class add_animal extends StatefulWidget {
 
 class _add_animalState extends State<add_animal> {
   int _radioValue = 0;
+  File? fileMedia;
+  List? data = [];
+
+  String dropdownValue ="Selected type";
+  String dropdownRace ="Selected Race";
+  String RaceValue ="Selected type";
+    List  Racelist=[
+
+  ];
+  List? typelist ;
+
+  late MediaSource source;
   final _formKey = GlobalKey<FormState>();
   DateTime dateTime = DateTime.now();
   var date_selected = DateFormat('yyyy/MM/dd').format(DateTime.now());
@@ -38,6 +61,53 @@ class _add_animalState extends State<add_animal> {
   TextEditingController etat_sante = TextEditingController();
   TextEditingController type = TextEditingController();
   TextEditingController descrption = TextEditingController();
+  List  RepeatList=[
+
+  ];
+  Future GetAllType() async {
+
+
+
+      //final String apiUrl = "https://tuncoin.herokuapp.com/cryptocurrency/values";
+      var Response = await http.get(
+          Uri.parse(VPNURL+'type/alltype'));
+      final String responseString = Response.body;
+
+      if (Response.statusCode == 200) {
+        var json = jsonDecode(Response.body);
+        setState(() {
+          RepeatList =json;
+
+        });
+print(RepeatList);
+
+      } else {
+        throw ("Can't get the value");
+      }
+
+  }
+
+
+  Future GetAllRace(String type) async {
+    //final String apiUrl = "https://tuncoin.herokuapp.com/cryptocurrency/values";
+    var Response = await http.get(Uri.parse('http://51.75.87.48:14600/type/getType/chien'));
+    final String responseString = Response.body;
+
+    if (Response.statusCode == 200) {
+
+final data = jsonDecode(responseString);
+setState(() {
+  Racelist=data[0]['sousType'];
+});
+print("*/**/*/*/");
+print(Racelist);
+print("*/*/*/**");
+ return responseString;
+
+    } else {
+      throw ("Can't get the value");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +155,7 @@ class _add_animalState extends State<add_animal> {
               alignment: Alignment.topRight,
               child: Column(
                 children: [
+
                   Container(
                     margin: EdgeInsets.only(bottom: 30),
                     padding: EdgeInsets.all(10),
@@ -100,11 +171,23 @@ class _add_animalState extends State<add_animal> {
                         ),
                       ],
                     ),
-                    child: Icon(
-                      FontAwesomeIcons.dog,
-                      size: 90,
-                      color: Colors.grey.shade300,
-                    ),
+                    child: fileMedia==null? ClipRRect(
+
+                            borderRadius: BorderRadius.circular(100.0),
+                            child: Image.asset(
+                            "assets/avatar.png",
+                              fit: BoxFit.cover,
+                              width: 150,
+                              height: 150,
+                            )):
+                     ClipRRect(
+                            borderRadius: BorderRadius.circular(100.0),
+                            child: Image.file(
+                              fileMedia!,
+                              fit: BoxFit.cover,
+                              width: 150,
+                              height: 150,
+                            )),
                   ),
                   Form(
                     key: _formKey,
@@ -131,62 +214,93 @@ class _add_animalState extends State<add_animal> {
                         SizedBox(
                           height: 30,
                         ),
-                        ButtonWidget(
-                          text: date_selected,
-                          onClicked: () => Utils.showSheet(
-                            context,
-                            child: buildDatePicker(),
-                            onClicked: () async {
-                              final value =
-                                  DateFormat('yyyy/MM/dd').format(dateTime);
-                              // Utils.showSnackBar(context, 'Selected "$value"');
+                        Container(
+                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                          child: ButtonWidget(
+                            text: date_selected,
+                            onClicked: () => Utils.showSheet(
+                              context,
+                              child: buildDatePicker(),
+                              onClicked: () async {
+                                final value =
+                                    DateFormat('yyyy/MM/dd').format(dateTime);
+                                // Utils.showSnackBar(context, 'Selected "$value"');
 
-                              setState(() {
-                                date_selected = value;
-                              });
+                                setState(() {
+                                  date_selected = value;
+                                });
 
-                              Navigator.pop(context);
-                            },
+                                Navigator.pop(context);
+                              },
+                            ),
+
                           ),
                         ),
                         Container(
-                          child: TextFormField(
-                            controller: type,
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "Enter type d animal";
-                              }
-                              return null;
-                            },
-                            style: GoogleFonts.gloriaHallelujah(
-                                textStyle: TextStyle(letterSpacing: .5)),
-                            decoration: ThemeHelper().textInputDecoration(
-                                'Type', 'Enter type d animal'),
-                          ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                        SizedBox(height: 20.0),
-                        Container(
-                          child: TextFormField(
-                            controller: race,
-                            style: GoogleFonts.gloriaHallelujah(
-                                textStyle: TextStyle(letterSpacing: .5)),
-                            decoration: ThemeHelper()
-                                .textInputDecoration("Race", "Enter race"),
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "Please enter race";
-                              }
-                              return null;
-                            },
+                          child: inputFiled2(title: "", hint: " $dropdownValue",
+                            widget:  DropdownButton<String>(
+
+
+                              icon:Icon(Icons.keyboard_arrow_down,color:Colors.grey),
+                              iconSize: 32,
+                              elevation: 4,
+                              style: subtitlestyle,
+                              underline:Container(height: 0,) ,
+                              items:RepeatList!.map<DropdownMenuItem<String>>((item) {
+
+                                return new DropdownMenuItem(child: Text(item['typename']),
+                                  value: item['typename'],
+                                );
+                              })?.toList()??[],
+                              onChanged: ( newvalue) {
+                                setState(() {
+
+                                  dropdownValue=newvalue!.toString();
+                                  print(dropdownValue);
+                                });
+                              },
+                            ),
                           ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
+
+SizedBox(height: 20,),
+
+                dropdownValue=="Selected type"  ?Container()  :    Container(
+                  decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                  child: inputFiled2(title: "", hint: " $dropdownRace",
+                            widget:  DropdownButton<String>(
+
+
+                              icon:Icon(Icons.keyboard_arrow_down,color:Colors.grey),
+                              iconSize: 32,
+                              elevation: 4,
+                              style: subtitlestyle,
+                              underline:Container(height: 0,) ,
+                              items:Racelist!.map<DropdownMenuItem<String>>((item) {
+
+                                return new DropdownMenuItem(child: Text(item['name']),
+                                  value: item['name'],
+                                );
+                              })?.toList()??[],
+                              onChanged: ( newvalue) {
+                                setState(() {
+
+                                  dropdownRace=newvalue!.toString();
+                                  print(dropdownRace);
+                                });
+                              },
+                            ),
+                          ),
+                ),
+
                         SizedBox(height: 20.0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
+                              decoration: ThemeHelper().inputBoxDecorationShaddow(),
+
                               width: 150,
                               child: TextFormField(
                                 controller: taille,
@@ -203,9 +317,10 @@ class _add_animalState extends State<add_animal> {
                                   return null;
                                 },
                               ),
-                              // decoration: ThemeHelper().inputBoxDecorationShaddow(),
+
                             ),
                             Container(
+                              decoration: ThemeHelper().inputBoxDecorationShaddow(),
                               width: 150,
                               child: TextFormField(
                                 controller: poids,
@@ -308,6 +423,10 @@ class _add_animalState extends State<add_animal> {
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
+
+
+
+
                                 await addanimal(
                                    Id,
                                     name.text,
@@ -315,9 +434,10 @@ class _add_animalState extends State<add_animal> {
                                     date_selected,
                                     etat_sante.text,
                                     poids.text,
-                                    race.text,
+                                 dropdownRace,
                                     taille.text,
-                                    type.text,
+                                    dropdownValue,
+                                fileMedia,
                                     descrption.text);
 
                                 showDialog<String>(
@@ -401,11 +521,15 @@ class _add_animalState extends State<add_animal> {
             ),
             Container(
               margin: EdgeInsets.fromLTRB(210, 130, 50, 10),
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: Icon(
-                Icons.add_a_photo_outlined,
-                size: 30,
-                color: Color.fromRGBO(59, 120, 121, 1),
+              padding: EdgeInsets.fromLTRB(30, 60, 20, 20),
+              child: InkWell(
+                onTap: () => capture(MediaSource.image),
+                child: Icon(
+
+                  Icons.add_a_photo_outlined,
+                  size: 30,
+                  color: Color.fromRGBO(59, 120, 121, 1),
+                ),
               ),
             )
           ],
@@ -436,8 +560,37 @@ class _add_animalState extends State<add_animal> {
 
 
   }
+  Future capture(MediaSource source) async {
+    setState(() {
+      this.source = source;
+      this.fileMedia = null;
+    });
+
+    final result = await Navigator.of(this.context).push(
+      MaterialPageRoute(
+        builder: (context) => SourcePage(),
+        settings: RouteSettings(
+          arguments: source,
+        ),
+      ),
+    );
+
+    if (result == null) {
+      return;
+    } else {
+      setState(() {
+        fileMedia = result;
+      });
+    }
+  }
   @override
   void initState() {
+    print("all type");
+    GetAllType();
+    print("allRace");
+
+    GetAllRace(dropdownValue);
+
     getvadationData();
     // TODO: implement initState
     super.initState();

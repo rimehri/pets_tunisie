@@ -36,12 +36,12 @@ int _selectedcolor = 0;
 List <int> remindList=[
   5,10,15,20
 ];
-  String _selectedRepeat = "None" ;
+  String _selectedRepeat = "Rien" ;
   List <String> RepeatList=[
- "None",
-    "Daily",
-    "Weekly",
-    "Monthly"
+ "Rien",
+    "Quotidien",
+    "Hebdomadaire",
+    "Mensuel"
   ];
   @override
   Widget build(BuildContext context) {
@@ -57,11 +57,11 @@ List <int> remindList=[
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Add Events ",
+                    "ajouter un événement",
                     style: subHeadingStyle
                   ),
                   SizedBox(height: 8,),
-                  inputFiled(title: "Title", hint: "Title", controller: _titleController,),
+                  inputFiled(title: "Titre", hint: "Titre", controller: _titleController,),
                   SizedBox(height: 8,),
                   inputFiled(title: "Note", hint: "Note", controller: _noteController,),
                   SizedBox(height: 8,),
@@ -79,7 +79,7 @@ List <int> remindList=[
                   SizedBox(height: 8,),
                   Row( 
                     children: [
-                      Expanded(child: inputFiled(title: "Start Date ",hint: _startTime,
+                      Expanded(child: inputFiled(title: "date de début",hint: _startTime,
                         widget: IconButton(
                         onPressed: (){
                           _getTimeFromUser(isStratTime:true);
@@ -89,7 +89,7 @@ List <int> remindList=[
                         ),
                       ),)),
                       SizedBox(width: 12,),
-                      Expanded(child: inputFiled(title: "End Date ",hint: _endTime,  widget: IconButton(
+                      Expanded(child: inputFiled(title: "date de fin ",hint: _endTime,  widget: IconButton(
                         onPressed: (){
                           _getTimeFromUser(isStratTime:false);
                         },
@@ -100,7 +100,7 @@ List <int> remindList=[
                     ],
                   ),
                   SizedBox(height: 8,),
-                  inputFiled(title: "Remind", hint: "$_selectedRemind minutes early",
+                  inputFiled(title: "rappeler", hint: "$_selectedRemind minutes d'avance",
                   widget: DropdownButton(
 
 
@@ -125,7 +125,7 @@ List <int> remindList=[
 
                   ),
                   SizedBox(height: 8,),
-                  inputFiled(title: "Repeat", hint: "$_selectedRepeat ",
+                  inputFiled(title: "Répéter", hint: "$_selectedRepeat ",
                     widget: DropdownButton(
 
 
@@ -157,7 +157,7 @@ List <int> remindList=[
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Color",style: titlestyle,),
+                          Text("Couleur",style: titlestyle,),
                           SizedBox(height: 8,),
 
                           Wrap(
@@ -182,10 +182,75 @@ List <int> remindList=[
                           )
                         ],
                       ),
-                      MyButton(label: "Create ", onTap: (){
+                      MyButton(label: "Créer ", onTap: (){
 
                         _validateDate();
-                        Get.back();
+                        showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => Dialog(
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(4.0)),
+                              child: Stack(
+                                clipBehavior: Clip.none,
+                                alignment: Alignment.topCenter,
+                                children: [
+                                  Container(
+                                    height: 200,
+                                    width: 350,
+                                    child: Padding(
+                                      padding:
+                                      const EdgeInsets.fromLTRB(
+                                          20, 50, 10, 10),
+                                      child: Column(
+                                        children: [
+                                          const Text(
+                                            'Information',
+                                            style: TextStyle(
+                                                fontWeight:
+                                                FontWeight.bold,
+                                                fontSize: 20),
+                                          ),
+                                          Text(
+                                            'Votre nouvel evenments a été ajouté avec succès : \n ',
+                                            style: TextStyle(
+                                                fontSize: 20),
+                                          ),
+                                          ElevatedButton(
+                                            onPressed: () => Navigator
+                                                .of(context)
+                                                .pushReplacement(
+                                                MaterialPageRoute(
+                                                    builder:
+                                                        (context) =>
+                                                            index_events())),
+                                            child: Text(
+                                              'Okay',
+                                              style: TextStyle(
+                                                  color:
+                                                  Colors.white),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                      top: -40,
+                                      child: CircleAvatar(
+                                        backgroundColor:
+                                        Colors.green,
+                                        radius: 40,
+                                        child: Icon(
+                                          Icons.check_rounded,
+                                          color: Colors.white,
+                                          size: 50,
+                                        ),
+                                      )),
+                                ],
+                              ),
+                            ));
                       })
                     ],
                   )
@@ -319,7 +384,7 @@ class appar extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 20),
             child: Text(
-              "Events",
+              "événements",
               style: TextStyle(
                   fontSize: 23,
                   fontWeight: FontWeight.bold,

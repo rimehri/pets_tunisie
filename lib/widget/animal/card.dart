@@ -52,7 +52,7 @@ class _cardanimalState extends State<cardanimal> {
 
                     image: DecorationImage(
                         fit: BoxFit.cover,
-            image: AssetImage('assets/kitten-510651.jpg')
+            image: NetworkImage(widget.cart4.image!)
             )
                   ),
                 ),
@@ -86,8 +86,8 @@ class _cardanimalState extends State<cardanimal> {
                               ),
                               onPressed: () {},
                             ),
-                            Text(
-                              widget.cart4.typeAnimal!.typename == null?"non definie" : widget.cart4.typeAnimal!.typename!,
+                            Text("gggg",
+                            //  widget.cart4.typeAnimal!.typename == null?"non definie" : widget.cart4.typeAnimal!.typename!,
                               style:GoogleFonts.gloriaHallelujah (textStyle:TextStyle(
                                 color: Colors.black,
                               ),

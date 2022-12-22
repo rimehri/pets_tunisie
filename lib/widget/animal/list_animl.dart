@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pfe/comonents/app_bar.dart';
+import 'package:pfe/data/features/User/typeanimal.dart';
 import 'package:pfe/data/features/User/user.dart';
 import 'package:pfe/widget/animal/add_animal.dart';
 import 'package:pfe/widget/animal/card.dart';
@@ -242,6 +243,7 @@ setState(() {
 
 getvadationData();
 getBody();
+
     super.initState();
 
   }

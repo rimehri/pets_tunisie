@@ -9,6 +9,7 @@ import 'package:pfe/data/features/events/EventController.dart';
 import 'package:pfe/widget/events/addEvent.dart';
 
 
+import '../../comonents/Drawer.dart';
 import '../../comonents/constants.dart';
 import '../../comonents/theme_helper.dart';
 
@@ -35,6 +36,9 @@ class _index_eventsState extends State<index_events> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer:  Drawer(
+        child: drawer(),
+      ),
 backgroundColor: Colors.white,
       body: ListView(
         physics: AlwaysScrollableScrollPhysics(),
@@ -54,13 +58,13 @@ children: [
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(DateFormat.yMMMd().format(DateTime.now()),style: subHeadingStyle,),
-            Text("Today",style: subHeadingStyle2,)
+            Text("Aujourd'hui",style: subHeadingStyle2,)
           ],
         ),
       ),
       Container(
         padding: EdgeInsets.all(8),
-       child:     MyButton(label: "+ New Events", onTap: () async {
+       child:     MyButton(label: "+ Nouveaux ", onTap: () async {
 
         await  Get.to(()=>const addEvents());
 //_eventController.getEvent();
@@ -129,7 +133,7 @@ children: [
 
       itemBuilder: (_, index) {
           Event event = eventList[index];
-          if(event.repeat=='Daily'){
+          if(event.repeat=='Quotidien'){
             DateTime date = DateFormat.jm().parse(event.startTime.toString());
             var myTime = DateFormat("HH:mm").format(date);
             print(myTime);
@@ -212,8 +216,8 @@ Get.bottomSheet(Container(
       ),
       Spacer(),
       event.isCompleted==1?Container():
-      _buttomsheetButton(label: "Event Compled",onTap: (){MakeEventCompleted(event.id!);reed();Get.back();},clr: AppConsts.appDeepOrange,context: contex),SizedBox(height: 10,),
-      _buttomsheetButton(label: "Delete Event ",onTap: () {
+      _buttomsheetButton(label: "Événement terminé",onTap: (){MakeEventCompleted(event.id!);reed();Get.back();},clr: AppConsts.appDeepOrange,context: contex),SizedBox(height: 10,),
+      _buttomsheetButton(label: "Supprimer l'événement ",onTap: () {
 delete(event);
 reed();
 Get.back();
@@ -223,7 +227,7 @@ Get.back();
         
       },clr: Colors.red[300]!,context: contex),
       SizedBox(height: 10,),
-      _buttomsheetButton(label: "Close" ,onTap: (){},isClose:true, clr: Colors.white!,context: contex),
+      _buttomsheetButton(label: "fermer" ,onTap: (){},isClose:true, clr: Colors.white!,context: contex),
       SizedBox(height: 10,)
    ],
   ),
@@ -291,7 +295,7 @@ class appar extends StatelessWidget {
             color: AppConsts.appDeepOrange,
           ),
           Padding(padding: EdgeInsets.only(left: 20),
-            child:Text("Events",style: TextStyle(fontSize: 23,fontWeight: FontWeight.bold,color: AppConsts.appDeepOrange),
+            child:Text("événements",style: TextStyle(fontSize: 23,fontWeight: FontWeight.bold,color: AppConsts.appDeepOrange),
 
 
 

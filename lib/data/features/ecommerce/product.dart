@@ -2,11 +2,12 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../../../config/URL.dart';
 import '../../model/ecommerceProduct.dart';
 Future <dynamic >getallProduct() async {
   // var members1 = <User>[];
   //final String apiUrl = "https://tuncoin.herokuapp.com/cryptocurrency/values";
-  var Response = await http.get(Uri.parse('https://obscure-taiga-00684.herokuapp.com/produit/all-product'));
+  var Response = await http.get(Uri.parse(VPNURL+'produit/all-product'));
   final String responseString = Response.body;
 
   if (Response.statusCode == 200) {

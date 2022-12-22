@@ -134,7 +134,7 @@ class _cartvetoState extends State<cartveto> {
             Container(
 
 
-              margin: EdgeInsets.only(left: 230,top: 80),
+              margin: EdgeInsets.only(left: 200,top: 80),
               child: RatingBar.builder(
                 initialRating: 3,
                 minRating: 1,

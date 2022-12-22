@@ -8,7 +8,7 @@ import '../../model/annonce.dart';
 Future <dynamic >getannonce() async {
  // var members1 = <User>[];
   //final String apiUrl = "https://tuncoin.herokuapp.com/cryptocurrency/values";
-  var Response = await http.get(Uri.parse('https://obscure-taiga-00684.herokuapp.com/annonce/getall'));
+  var Response = await http.get(Uri.parse(VPNURL+'annonce/getall'));
   final String responseString = Response.body;
 
   if (Response.statusCode == 200) {
@@ -24,7 +24,7 @@ print(json);
 }
 Future<dynamic> addannonce(user,titre , categorie,type ,prix ,description,) async {
   final response = await http.post(
-    Uri.parse(URL_BASE + '/annonce/add'),
+    Uri.parse(VPNURL+ 'annonce/add'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -67,7 +67,7 @@ Future<dynamic> addannonce(user,titre , categorie,type ,prix ,description,) asyn
 }
 Future<Annonce> deleteannonce(String id ) async {
   final http.Response response = await http.delete(
-    Uri.parse(URL_BASE+'/annonce/removeannonce'),
+    Uri.parse(VPNURL+'annonce/removeannonce'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8'},
     body: jsonEncode(
@@ -106,7 +106,7 @@ void editannonce(
     String? id , String? titre, String? category ,type,prix,description) async {
   final response = await http.patch(
       Uri.parse(
-        URL_BASE+'/annonce/updateannonce',
+        URL_BASE+'annonce/updateannonce',
       ),
       headers: <String, String>{
         'Context-Type': 'application/json;charset=UTF-8',

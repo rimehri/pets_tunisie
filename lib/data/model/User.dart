@@ -123,7 +123,7 @@ class Animal {
   String? race;
   String? description;
   String? image;
-  TypeAnimal? typeAnimal;
+  String? typeAnimal;
 
   Animal(
       {
@@ -153,9 +153,7 @@ class Animal {
     race = json['race'];
     description = json['Description'];
     image = json['image'];
-    typeAnimal = json['type_animal'] != null
-        ? new TypeAnimal.fromJson(json['type_animal'])
-        : null;
+    typeAnimal = json['type_animal'];
   }
 
   Map<String, dynamic> toJson() {
@@ -170,28 +168,8 @@ class Animal {
     data['race'] = this.race;
     data['Description'] = this.description;
     data['image'] = this.image;
-    if (this.typeAnimal != null) {
-      data['type_animal'] = this.typeAnimal?.toJson();
-    }
+data['type_animal'] =this.typeAnimal;
     return data;
   }
 }
 
-class TypeAnimal {
-  String? typename;
-  String? sId;
-
-  TypeAnimal({this.typename, this.sId});
-
-  TypeAnimal.fromJson(Map<String, dynamic> json) {
-    typename = json['typename'];
-    sId = json['_id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['typename'] = this.typename;
-    data['_id'] = this.sId;
-    return data;
-  }
-}

@@ -37,7 +37,7 @@ class _modif_animalState extends State<modif_animal> {
  late  TextEditingController race = TextEditingController(text: widget.animal.race);
  late  TextEditingController poids = TextEditingController(text: widget.animal.poids.toString());
  late TextEditingController etat_sante = TextEditingController(text: widget.animal.etatSante);
-  late TextEditingController type = TextEditingController(text: widget.animal.typeAnimal!.typename);
+  late TextEditingController type = TextEditingController(text: widget.animal.typeAnimal);
   late TextEditingController descrption = TextEditingController(text: widget.animal.description);
   late int _radioValue = widget.animal.genre =="mâle"?1:2;
 

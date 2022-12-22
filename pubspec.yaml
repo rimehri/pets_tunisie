@@ -37,6 +37,7 @@ dependencies:
   google_fonts: ^3.0.1
   hexcolor: ^2.0.7
   get: ^4.6.5
+  image_picker: ^0.8.6
   date_picker_timeline:
   dotted_border: ^2.0.0+2
   font_awesome_flutter: ^10.2.1
@@ -44,6 +45,7 @@ dependencies:
   flutter_native_splash: ^2.1.1
   flutter_svg: ^1.0.3
   get_storage:
+  file_picker: ^5.2.2
   flutter_local_notifications:
   flutter_native_timezone:
   url_launcher: ^6.1.6

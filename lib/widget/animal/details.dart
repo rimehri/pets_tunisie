@@ -57,8 +57,8 @@ class _detailsState extends State<details> {
                                         color: Color.fromRGBO(0, 147, 148, 1),
                                         fontWeight: FontWeight.bold),
                                   ),
-                              Text(
-                                widget.animal.typeAnimal!.typename==null?"":widget.animal.typeAnimal!.typename!+"  ",
+                              Text("",
+                                //widget.animal.typeAnimal!.typename==null?"":widget.animal.typeAnimal!.typename!+"  ",
                                style:
                                   TextStyle(
                                     fontSize: 22,
@@ -228,8 +228,8 @@ class _detailsState extends State<details> {
                     left: 230,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(100.0),
-                        child: Image.asset(
-                          'assets/kitten-510651.jpg',
+                        child: Image.network(
+                          widget.animal.image!,
                           fit: BoxFit.cover,
                           width: 150,
                           height: 150,
